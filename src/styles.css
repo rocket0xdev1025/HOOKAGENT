@@ -214,7 +214,7 @@ h3 { font-size: clamp(26px, 3vw, 40px); margin: 0; text-transform: uppercase; }
   box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--paper);
 }
 .b-lede { font-size: clamp(16.5px, 1.35vw, 19px); line-height: 1.5; color: var(--paper-2); max-width: 560px; margin: 8px 0 0; }
-.token-line { font: 500 13px/1.4 var(--mono); letter-spacing: 0.02em; word-break: break-all; }
+.token-line { margin: 4px 0 14px; font: 500 13px/1.4 var(--mono); letter-spacing: 0.02em; word-break: break-all; }
 .token-line a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
 .b-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 620px; margin-top: 8px; }
 .b-mode {
