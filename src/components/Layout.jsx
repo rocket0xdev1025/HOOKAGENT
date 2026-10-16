@@ -82,11 +82,8 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
               third-party audit. Size what you lend like that.
             </p>
             <span className="socials">
-              <a href="https://x.com/PriorsAgents" target="_blank" rel="noreferrer" aria-label="Priors on X">
+              <a href="https://x.com/HookAIAgent" target="_blank" rel="noreferrer" aria-label="Priors on X">
                 𝕏
-              </a>
-              <a href="https://github.com/priors-agents/priors" target="_blank" rel="noreferrer" aria-label="Priors on GitHub">
-                ⌘
               </a>
             </span>
           </div>
