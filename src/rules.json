@@ -1,0 +1,1066 @@
+[
+  {
+    "id": "whale-of-the-day",
+    "name": "Whale of the Day",
+    "family": "games",
+    "emoji": "🐳",
+    "short": "The biggest single buy each day wins a slice of the pot.",
+    "long": "HookAgents keeps today's biggest buy and its wallet. After 00:00 UTC anyone can settle, and the winner is paid from the Prize Pot. Hold to win: if the leading wallet sells or sends any tokens before it is paid, it loses the lead or the prize and the money stays in the pot.",
+    "chips": [
+      "daily leaderboard",
+      "pays from the pot",
+      "hold to win"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "daily-raffle",
+    "name": "Daily Raffle",
+    "family": "games",
+    "emoji": "🎰",
+    "short": "Every qualifying buy is a ticket in today's draw.",
+    "long": "Each qualifying buy adds a ticket: at most one per wallet per clock hour (UTC), up to the daily limit. After the day ends, the draw uses a block hash from a later slot, so nobody can know or revert the result when they buy. One winner a day; if the draw is missed, the prize rolls over. Selling or sending cancels that day's tickets; a draw that lands on a wallet that left after the day closed rolls over.",
+    "chips": [
+      "one winner a day",
+      "commit-reveal draw",
+      "rolls over"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "ath-bell",
+    "name": "ATH Bell",
+    "family": "games",
+    "emoji": "🔔",
+    "short": "The buy that sets a new all-time high rings the bell and wins.",
+    "long": "HookAgents keeps the all-time-high market cap. A buy that beats the last bell by at least the step rings it and wins a prize from the pot. The prize is paid a minute after it is won; a winner that sells or sends any tokens first forfeits it.",
+    "chips": [
+      "new highs pay",
+      "race to ring it",
+      "cooldown"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "combo-meter",
+    "name": "Combo Meter",
+    "family": "games",
+    "emoji": "🕹️",
+    "short": "Buys within 60 s build a combo. Hit the target and the finisher wins.",
+    "long": "Buys from different wallets that land within the window of each other build a combo; a longer gap resets it. A wallet that made one of the last four counted buys doesn't count again. The buy that reaches the target wins a prize, paid a minute later if the winner still holds.",
+    "chips": [
+      "arcade combo bar",
+      "coordinated buys",
+      "finisher wins"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "pinata",
+    "name": "Piñata",
+    "family": "games",
+    "emoji": "🪅",
+    "short": "Every buy hits it. When it bursts, the last 10 buyers split the prize.",
+    "long": "Cumulative buy volume fills the piñata. When it crosses the target it bursts, the last buyers split the prize, and a new piñata appears. A place among the last buyers needs a buy of at least 1/1000 of the target. Winners are paid a minute after the burst; one that sold or sent in between loses its share.",
+    "chips": [
+      "health bar",
+      "last 10 split",
+      "repeats"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "boss-fight",
+    "name": "Boss Fight",
+    "family": "games",
+    "emoji": "🐉",
+    "short": "Buys deal damage, sells heal the boss. Beat it and the top hitters split the loot.",
+    "long": "The boss has HP in SOL. Every buy deals damage equal to the SOL spent; sells heal it. At 0 HP the loot splits among the top 20 damage dealers by damage, with a bonus for the top hitter, and a tougher boss spawns.",
+    "chips": [
+      "HP bar",
+      "damage leaderboard",
+      "net buying wins"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "clan-wars",
+    "name": "Clan Wars",
+    "family": "games",
+    "emoji": "⚔️",
+    "short": "Every wallet is in a clan. The clan with the most net buying wins weekly.",
+    "long": "Each wallet belongs to a clan, picked from its address or chosen with a memo on its first buy. Each week the clan with the most net buy volume (buys minus sells) wins, and its top net buyers (10 by default) split the prize.",
+    "chips": [
+      "team colours",
+      "weekly scoreboard",
+      "sells hurt your clan"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "milestone-prizes",
+    "name": "Milestone Prizes",
+    "family": "games",
+    "emoji": "🏁",
+    "short": "The wallet that becomes holder #100, #500, #1,000… wins.",
+    "long": "HookAgents counts holders. The buy that pushes the count past a milestone wins a prize from the pot. The prize is paid a minute after it is won; a winner that sells or sends any tokens first forfeits it. A send that crosses a milestone doesn't use it up; the next buy that adds a holder wins it.",
+    "chips": [
+      "holder milestones",
+      "rewards new holders",
+      "recruit to win"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "finisher",
+    "name": "The Finisher",
+    "family": "games",
+    "emoji": "🏆",
+    "short": "The buy that graduates the curve wins the pot.",
+    "long": "The last qualifying buy before the curve completes wins the prize, paid after graduation.",
+    "chips": [
+      "graduation prize",
+      "push it over",
+      "graduating curves"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "dip-catcher",
+    "name": "Dip Catcher",
+    "family": "growth",
+    "emoji": "🧲",
+    "short": "A big sell opens a bounty for whoever buys the dip back.",
+    "long": "A sell over the trigger posts a bounty sized to the sell, capped by the pot. The first buy that refills enough of it within the window wins the bounty. Dumps turn into buy events. The prize is paid a minute after it is won; a winner that sells or sends any tokens first forfeits it.",
+    "chips": [
+      "dumps post bounties",
+      "first refill wins",
+      "absorbs sells"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "grand-opening",
+    "name": "Grand Opening",
+    "family": "growth",
+    "emoji": "🎉",
+    "short": "Trading opens at a set time with a public countdown.",
+    "long": "Before the opening time only the creator's dev buy can land; everyone else starts at the same second. A launch event people can show up for instead of a stealth snipe. Pair it with Human Check for the first minutes.",
+    "chips": [
+      "countdown",
+      "everyone starts equal",
+      "event launch"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "buy-streak",
+    "name": "Buy Streak",
+    "family": "growth",
+    "emoji": "🔥",
+    "short": "Buy N days in a row and your max per wallet doubles.",
+    "long": "HookAgents counts consecutive UTC days each wallet buys (any size counts). Reach the streak and that wallet's cap doubles (and Daily Raffle tickets count double) for as long as it keeps buying every day. Missing a day or selling resets the streak.",
+    "chips": [
+      "daily habit",
+      "cap ×2",
+      "miss a day or sell: reset"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "early-bird",
+    "name": "Early Bird Bonus",
+    "family": "growth",
+    "emoji": "🐣",
+    "short": "Bonus tokens that shrink as the token grows.",
+    "long": "Each buy earns bonus tokens from a creator-funded vault: the full bonus at the launch market cap, falling in a straight line to zero at the market cap you pick. Claimable after the hold period; selling or sending any tokens from that wallet before then forfeits the bonuses still waiting. A bonus is only credited while the vault can cover it.",
+    "chips": [
+      "early conviction",
+      "linear fade",
+      "hold to claim"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "bring-a-friend",
+    "name": "Bring a Friend",
+    "family": "growth",
+    "emoji": "🤝",
+    "short": "Send tokens to a new wallet; if they buy within 7 days, you earn a bonus.",
+    "long": "The first wallet to send at least the minimum buy size to a wallet that is new to the token becomes its referrer for 7 days. If that friend buys, the referrer earns a bonus from the pot, claimable one day later and only if the friend hasn't sold or sent since. Fair by construction: the friend must be new here (no record of any kind in the token's wallet table), a wallet can be brought once a year at most, two wallets can't refer each other, the bonus is at most 2% (under the curve's round-trip fee, so a self-referral never nets a profit), and one referrer collects at most its cap share of the pot per day.",
+    "chips": [
+      "holders recruit",
+      "paid on real buys",
+      "7-day window"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "gift-links",
+    "name": "Gift Links",
+    "family": "growth",
+    "emoji": "🎁",
+    "short": "Turn tokens into a claim link anyone can open.",
+    "long": "Holders lock tokens behind a link. Whoever opens it claims them with any wallet; only a hash of the link's one-time key is on-chain, and that key signs the claim, so nobody watching the network can take the gift first. The sender can take back an unclaimed gift after 7 days.",
+    "chips": [
+      "onboarding links",
+      "escrowed",
+      "reclaim after 7 days"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "decaying-exit-fee",
+    "name": "Decaying Exit Fee",
+    "family": "growth",
+    "emoji": "🍂",
+    "short": "Quick sells pay into the Prize Pot; the fee fades to 0 the longer you hold.",
+    "long": "Sells pay a fee into the Prize Pot that starts high right after a buy and fades to zero as the bag ages. The age is the bag's average: every purchase or received transfer counts as brand new for its share of the bag, and a bag moved to another wallet starts over. Flippers fund the prizes that reward holders. Sells go through the HookAgents route; if no sell has paid the fee for 48 hours, the fee lifts.",
+    "chips": [
+      "flippers fund prizes",
+      "fades with time",
+      "48 h failsafe"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "volume-burn",
+    "name": "Volume Burn",
+    "family": "growth",
+    "emoji": "♨️",
+    "short": "Every X SOL of volume burns a slice of a locked reserve.",
+    "long": "You buy the burn reserve at launch and lock it in the token's burn account; nobody else can buy until the full reserve is there (the program checks). HookAgents counts volume; every step, anyone can call the burn and a slice of the reserve is destroyed on-chain. When the reserve is used up, burning stops.",
+    "chips": [
+      "deflation from activity",
+      "public burns",
+      "creator reserve"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "buyback-engine",
+    "name": "Buyback Engine",
+    "family": "growth",
+    "emoji": "⚙️",
+    "short": "Part of your fee earnings buys the token back automatically.",
+    "long": "A keeper claims a share of the creator's curve fees into a buyback account and buys from the token's own pool on a schedule, then burns or locks what it buys. Constant, public buy pressure that scales with volume.",
+    "chips": [
+      "automatic buys",
+      "burn or lock",
+      "scales with volume"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "holder-goals",
+    "name": "Holder Goals",
+    "family": "growth",
+    "emoji": "🎯",
+    "short": "Community goals unlock a reward for every holder.",
+    "long": "Set goals like 1,000 holders or a $1M market cap. When one is hit, every wallet that has held at least the minimum bag since before the goal can claim a reward from a creator-funded vault, while the vault lasts (first come, first served). You can't take tokens back out of the vault until 30 days after the last goal is reached, or 30 days after graduation.",
+    "chips": [
+      "hold to claim",
+      "recruit together",
+      "vault locked for the goals"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "loyalty-airdrop",
+    "name": "Loyalty Airdrop",
+    "family": "growth",
+    "emoji": "🪂",
+    "short": "Hold token A for N days and claim token B.",
+    "long": "A follow-up launch rewards the original community: wallets that held enough of the parent token for the hold period claim this token from a vault.",
+    "chips": [
+      "ecosystem launches",
+      "hold-to-claim",
+      "linked"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "sniper-freeze",
+    "name": "Sniper Freeze",
+    "family": "sell",
+    "emoji": "🧊",
+    "short": "Wallets that buy in the first seconds can't sell for hours.",
+    "long": "Wallets whose buy lands in the first seconds after trading opens are frozen from selling and sending until the freeze ends. Snipers are the biggest source of early dumps; this makes sniping pointless. The token page shows the freeze before anyone buys. You're exempt.",
+    "chips": [
+      "kills sniper dumps",
+      "shown up front",
+      "time-limited"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "aging-bags",
+    "name": "Aging Bags",
+    "family": "sell",
+    "emoji": "🍷",
+    "short": "The longer you hold, the more you can sell per day.",
+    "long": "Each wallet's daily sell limit grows with the age of its bag, from a small cap on day 1 to no limit after the aging period. Tokens bought or received today count as new for their share of the bag. Sends between wallets aren't capped. A full sell-out resets the clock. Old hands are free; fresh flippers wait.",
+    "chips": [
+      "hold age",
+      "grows daily",
+      "no limit later"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "dump-insurance",
+    "name": "Dump Insurance",
+    "family": "sell",
+    "emoji": "🛟",
+    "short": "If the price crashes right after your buy, claim part of the loss back.",
+    "long": "If the price falls past the trigger within the window after your buy and you haven't sold, you can claim back part of the loss from the pot. Selling or sending cancels the cover, so you can't dump your own buy to claim. A claim can be made from one minute after the buy.",
+    "chips": [
+      "buy without fear",
+      "no-sell condition",
+      "pot-funded"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "underwater-hook",
+    "name": "The Underwater Hook",
+    "family": "sell",
+    "emoji": "🪝",
+    "short": "Every 5 minutes the pot pays the holders who are down, until they're back to even.",
+    "long": "Your creator fees fill the Prize Pot. Every round, the program compares what each holder paid for its bag (its SOL cost basis, kept on-chain from its buys) with what the bag is worth now, and pays the holders who are underwater in proportion to how far down they are, until they are back to even. A payout lowers that holder's basis, so the same loss is never paid twice; selling half the bag takes half the basis with it. Nobody underwater? The pot keeps building for whoever is next. The round skips wallets that bought in the last minute, and your own wallet is never covered.",
+    "chips": [
+      "pays holders who are down",
+      "every 5 minutes",
+      "fee-funded"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "lock-vault",
+    "name": "Lock Vault",
+    "family": "sell",
+    "emoji": "🔐",
+    "short": "Holders can lock bags for 7/30/90 days for boosted prizes.",
+    "long": "Completely optional: holders lock tokens in an escrow for 7, 30 or 90 days and get extra weight in Daily Raffle tickets and Boss Fight damage. The boost is full for buys up to the size of the locked bag and smaller in proportion for bigger buys. Nothing is ever locked without the holder signing.",
+    "chips": [
+      "voluntary",
+      "boosted prizes",
+      "shrinks float"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "trade-tax",
+    "name": "Trade Tax",
+    "family": "paid",
+    "emoji": "🧾",
+    "short": "A percentage tax on every buy and sell, paid in SOL to you, the pot or the buyback.",
+    "long": "Set a buy tax and a sell tax as a percentage of each trade's SOL value (up to 25% each). The tax goes to your wallet, the Prize Pot, the Buyback Engine, or up to 3 wallets you choose. The trade box adds the payment and shows it before anyone signs; the program computes the exact amount from the pool and refuses any trade that doesn't pay it.",
+    "chips": [
+      "% of every trade",
+      "buy and sell rates",
+      "you choose where it goes"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "diamond-dividends",
+    "name": "Diamond Dividends",
+    "family": "sell",
+    "emoji": "💠",
+    "short": "Part of your fee earnings is paid weekly to holders who didn't sell.",
+    "long": "You commit a share of your curve-fee earnings to holders. A keeper computes shares weekly from on-chain balances and publishes a root anyone can verify; holders claim in SOL. Wallets that sold that week skip it.",
+    "chips": [
+      "weekly SOL",
+      "sellers skip",
+      "verifiable"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "allowlist",
+    "name": "Allowlist",
+    "family": "hold",
+    "emoji": "📋",
+    "short": "Only wallets on your list can buy and hold it.",
+    "long": "You upload a list of wallets at launch. Only those wallets can receive the token. The list is hashed into a Merkle root stored on-chain, and every trade carries a proof that the receiver is on it.",
+    "chips": [
+      "your wallet list",
+      "Merkle-proof check",
+      "no presale contract"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "holder-gated",
+    "name": "Holder-gated",
+    "family": "hold",
+    "emoji": "🎫",
+    "short": "Only wallets holding your chosen token can receive.",
+    "long": "To receive this token a wallet must already hold a token you pick: a membership token, an NFT or another coin. HookAgents checks the receiving wallet's balance of it on every buy and transfer.",
+    "chips": [
+      "any token or NFT",
+      "checked on every receive",
+      "membership coins"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "invite-only",
+    "name": "Invite Only",
+    "family": "hold",
+    "emoji": "💌",
+    "short": "You can only buy if a holder already sent you some.",
+    "long": "Only wallets that already hold the token can buy more. A holder invites a friend by sending them a pinch; the creator seeds the first circle. Sends and sells always work. Optionally, the doors open to everyone, for good, once the market cap has reached a level you set, or a set time after trading opens. A buy can't open the doors for itself.",
+    "chips": [
+      "holders invite holders",
+      "stateless check",
+      "doors open later"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "magic-word",
+    "name": "Say the Magic Word",
+    "family": "hold",
+    "emoji": "🔮",
+    "short": "Every buy must prove it knows the current secret word.",
+    "long": "Every buy must be signed by the word key: a key anyone who knows the current word can derive, and nobody else. Only that key's public half goes on-chain, never the word or a hash of it, and a buyer's proof is bound to its own transaction, so watching the chain gives nothing away. The creator drops the word on X, in Telegram or on stream and can rotate it at any moment. It's a starting gun, not a password: everyone who hears the word can buy until it's rotated or used up. Sells and sends never need it. HookAgents-route only: the buy box derives the key from what the buyer types.",
+    "chips": [
+      "word drops",
+      "key on-chain, never the word",
+      "creator rotates"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "humans-only",
+    "name": "Humans Only",
+    "family": "hold",
+    "emoji": "🧑",
+    "short": "Receivers need a proof-of-personhood pass.",
+    "long": "To receive the token, a wallet must hold a valid proof-of-personhood attestation from the Solana Attestation Service: you pick the issuer's credential and schema. Bot swarms need an attestation for every wallet. (Civic Pass, the other option, was shut down in 2025.)",
+    "chips": [
+      "SAS attestation",
+      "pick the issuer",
+      "anti-sybil"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "holder-vesting",
+    "name": "Holder vesting",
+    "family": "sell",
+    "emoji": "⏱️",
+    "short": "Each wallet unlocks its bag on its own clock, until the curve graduates.",
+    "long": "Each wallet's tokens unlock on their own clock from the moment it buys: nothing during the cliff, then a fixed share every period, from hourly to weekly. Vest every wallet, or only the ones that buy early, like a presale. A wallet can only sell what it has unlocked. Buys under the minimum don't vest, your own wallet isn't vested, and vesting ends at graduation.",
+    "chips": [
+      "per-wallet clock",
+      "cliff + periods",
+      "presale mode"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "anti-dump",
+    "name": "Anti-dump caps",
+    "family": "sell",
+    "emoji": "🛡️",
+    "short": "A loose cap on buys and a tight cap on sells, enforced inside the swap.",
+    "long": "HookAgents tells buys from sells and caps each side separately, so people can buy freely while no single trade can dump a big bag.",
+    "chips": [
+      "buy cap",
+      "tighter sell cap",
+      "in the swap"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "sliding-caps",
+    "name": "Sliding caps",
+    "family": "sell",
+    "emoji": "📉",
+    "short": "The max buy and max sell change as the market cap grows.",
+    "long": "You set the caps at launch, then up to five market-cap levels where they change: for example max sell 1% at launch, 0.5% from $100,000 and 0.1% from $1,000,000, so whales have to exit in ever smaller pieces as the token grows. HookAgents reads the price from the token's own pool on every trade. If the market cap falls back under a level, the level below applies again. Nobody is exempt, including the creator.",
+    "chips": [
+      "up to 5 levels",
+      "reads the pool price",
+      "nobody exempt"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "graduated-sell-caps",
+    "name": "Graduated sell caps",
+    "family": "sell",
+    "emoji": "🪜",
+    "short": "The bigger your bag, the less you can sell in one go.",
+    "long": "Small holders sell freely, but the bigger a wallet's bag, the smaller its per-sell cap, down to a floor. A whale can build a position but can't dump it in one sell. Nothing to fund and no minimum buy: HookAgents reads the bag straight from the sell.",
+    "chips": [
+      "bag-aware",
+      "linear to a floor",
+      "nothing to fund"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "whale-harpoon",
+    "name": "Whale Harpoon",
+    "family": "sell",
+    "emoji": "🐋",
+    "short": "Any single buy above X% locks that wallet's sells for hours.",
+    "long": "Any single buy bigger than the harpoon size harpoons that wallet: it can't sell or send for the lock time. Small buyers never notice. Big money can still come in; it just can't flip.",
+    "chips": [
+      "size-triggered",
+      "temporary lock",
+      "no rent"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "shill-lock",
+    "name": "Shill Lock",
+    "family": "sell",
+    "emoji": "📣",
+    "short": "Listed callers and KOLs must hold for hours after buying.",
+    "long": "List known caller and KOL wallets at launch (up to 50). You close the list before anyone else can buy, and it can't change afterwards. A listed wallet that buys can't sell or send for the hold time; each further buy that adds 1% or more to its bag restarts the timer, tokens sent to it don't. It only binds the wallets you list. In our own tracking, 78% of X callouts were dumped within 15 minutes; this makes the call cost something.",
+    "chips": [
+      "up to 50 wallets",
+      "hold timer",
+      "list locked at launch"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "circuit-breaker",
+    "name": "Circuit Breaker",
+    "family": "sell",
+    "emoji": "⚡",
+    "short": "A big move in minutes halts trading briefly, like a stock exchange.",
+    "long": "If the price moves more than the trigger within the lookback, trading halts for the halt time, like a stock exchange. Sends keep working. A halt never lasts longer than its setting, so it can't turn into a trap. Be honest about what it is: a big move on a small market cap is cheap to make, so halts can be tripped on purpose. After a halt the breaker sleeps for one lookback while the price history is rebuilt, so one wallet can't chain halts back to back, and a halt never runs down a Last Buyer Wins clock.",
+    "chips": [
+      "price-triggered",
+      "short halts",
+      "stock-style"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "price-limits",
+    "name": "Price Limits",
+    "family": "sell",
+    "emoji": "🧧",
+    "short": "The price can move at most ±X% a day: limit up, limit down.",
+    "long": "The A-share rule: the price may move at most the band from the day's opening price. At limit-up, only sells go through; at limit-down, only buys. It resets every day.",
+    "chips": [
+      "daily band",
+      "limit up / down",
+      "resets daily"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "exit-valve",
+    "name": "Exit Valve",
+    "family": "sell",
+    "emoji": "🚰",
+    "short": "All wallets together can sell at most X% of supply per hour.",
+    "long": "In each window the whole token can sell at most a set share of supply more than was bought in that window, all wallets combined, first come first served. Buying gives sell room back. One wallet can use at most its share of the valve. It refills every window.",
+    "chips": [
+      "shared sell budget",
+      "refills hourly",
+      "anti-cascade"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "max-per-wallet",
+    "name": "Max per wallet",
+    "family": "fair",
+    "emoji": "👛",
+    "short": "No wallet can hold more than a set share of supply.",
+    "long": "After every buy or transfer HookAgents checks what the receiving wallet now holds, and refuses the trade if it would go over your cap. The pool and your own wallet are exempt. Nothing to fund and no per-wallet setup. Each wallet has one token account for this token, so a bag can't be spread over several accounts of one wallet.",
+    "chips": [
+      "checked after every receive",
+      "pool + creator exempt",
+      "nothing to fund"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "chapters",
+    "name": "Chapters",
+    "family": "fair",
+    "emoji": "📚",
+    "short": "A max per wallet that doubles every time enough volume trades.",
+    "long": "A max per wallet that grows with the token. It starts small, for example 1% of supply, and doubles every time the total volume traded crosses another chapter, for example every 10,000,000 tokens. Selling back into the pool always works.",
+    "chips": [
+      "volume chapters",
+      "cap doubles",
+      "sells always work"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "holder-chapters",
+    "name": "Holder Chapters",
+    "family": "fair",
+    "emoji": "📖",
+    "short": "Max per wallet doubles each time the holder count crosses a milestone.",
+    "long": "Like Chapters, but the max per wallet doubles when the number of holders crosses milestones, not volume. Volume can be wash-traded in minutes. HookAgents counts holders itself: a wallet going from zero to above the minimum is +1, falling below the minimum is −1.",
+    "chips": [
+      "counts holders",
+      "minimum bag",
+      "milestones"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "rising-max",
+    "name": "Rising max per wallet",
+    "family": "fair",
+    "emoji": "📈",
+    "short": "Max per wallet starts small and rises on a timer.",
+    "long": "Every wallet's max holding starts small and rises for everyone on a timer you set: a fixed step or doubling. It never stops rising, so the token opens up completely over time. Snipers can only grab a tiny bag at launch. Nothing to fund and no per-wallet setup; the pool and your wallet are exempt.",
+    "chips": [
+      "timer",
+      "step or double",
+      "opens fully"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "sniper-fee-cap",
+    "name": "Sniper-fee cap",
+    "family": "fair",
+    "emoji": "🎯",
+    "short": "Buys paying sniper-sized priority fees or tips are refused at launch.",
+    "long": "Snipers win launches by outbidding everyone with huge priority fees and Jito tips. For a launch window you choose, HookAgents reads each buy's transaction and refuses it if it pays more than your cap. Normal buyers pay tiny fees and never notice. Sells are never blocked and your wallet is exempt.",
+    "chips": [
+      "reads the tx",
+      "priority fee + Jito tip",
+      "launch window"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "human-check",
+    "name": "Human Check",
+    "family": "fair",
+    "emoji": "🛂",
+    "short": "Every buy needs a CAPTCHA, so bots can't snipe the launch.",
+    "long": "For a window you choose, a buy only lands if the HookAgents co-signer signed it, and the co-signer only signs after the buyer solves a CAPTCHA on the token page. Each signature is bound to that exact transaction and dies with its blockhash in about a minute, so nobody can pre-sign a block-zero snipe, bundle 50 wallets, or reuse a pass. Sells and sends are never gated, and your wallet is exempt for the dev buy.",
+    "chips": [
+      "CAPTCHA per buy",
+      "no block-zero snipes",
+      "sells never gated"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "trade-guard",
+    "name": "Trade guard",
+    "family": "fair",
+    "emoji": "🚧",
+    "short": "No single trade can move more than a set share of supply.",
+    "long": "Every buy, sell and transfer is capped at the same share of supply. Anything bigger is refused inside the swap, so no whale can grab or dump a big bag in one trade.",
+    "chips": [
+      "one cap",
+      "buys, sells, sends",
+      "in the swap"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "anti-bundle",
+    "name": "Anti-bundle",
+    "family": "fair",
+    "emoji": "📦",
+    "short": "Only a few buys per block, so bundlers can't sweep the launch.",
+    "long": "HookAgents counts buys in each Solana block and refuses any past your limit. A bundler packing many buys into one block gets the first few at most. Sells don't count against the limit, and you can also cap each wallet to one buy per block. Buys under 0.01% of supply aren't counted or limited, so nobody can use up a block with crumbs. The block's slots are first come, first served.",
+    "chips": [
+      "per-block counter",
+      "sells don't count",
+      "1 buy / wallet / block"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "anti-sandwich",
+    "name": "Anti-Sandwich",
+    "family": "fair",
+    "emoji": "🥪",
+    "short": "A wallet that bought in a block can't sell in the same block.",
+    "long": "A sandwich (front-run, victim, back-run) is a same-block round trip. HookAgents remembers every buyer of the current block (up to 32 wallets) and refuses a sell, or a send to another wallet, from any of them in the same block. When 32 wallets have bought in one block, further new buyers wait for the next block. It can't stop a bot that sells tokens it already held in another wallet.",
+    "chips": [
+      "kills sandwiches",
+      "no rent",
+      "same-block memory"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "venue-locked",
+    "name": "No wallet sends",
+    "family": "where",
+    "emoji": "🏟️",
+    "short": "No wallet-to-wallet sends: every move goes through the pool.",
+    "long": "The rule is about sends, not venues: a plain wallet-to-wallet transfer is refused, so every move of the token is a trade on its Meteora pool, hits your official liquidity, and nobody can pass the token quietly off-market between wallets. Where the pool is traded from (the site, a terminal, a bot) is not restricted; pick Venue Mix for that.",
+    "chips": [
+      "no wallet sends",
+      "pool trades only",
+      "official liquidity"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "dex-only",
+    "name": "DEX-only",
+    "family": "where",
+    "emoji": "🔁",
+    "short": "Moves only through a DEX, never wallet to wallet.",
+    "long": "Moves only when a program moves it, like a swap on the Meteora pool. A plain wallet-to-wallet send is refused, so the token can't be passed around off-market. Buying and selling through the pool work normally.",
+    "chips": [
+      "program-moved only",
+      "no wallet sends",
+      "any DEX"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "fomo-only",
+    "name": "FOMO-only buys",
+    "family": "where",
+    "emoji": "📱",
+    "short": "It can only be bought through the FOMO app.",
+    "long": "HookAgents checks that FOMO's own signing wallet co-signed each buy and refuses any buy that didn't come through FOMO. Launching includes a required dev buy; the dev wallet is permanently whitelisted, so you can buy anywhere with it. Selling and sending always work, and the rule ends when the curve graduates.",
+    "chips": [
+      "FOMO co-signature",
+      "sells anywhere",
+      "dev buy required"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "pump-only",
+    "name": "Pump App only",
+    "family": "where",
+    "emoji": "💊",
+    "short": "It can only be bought in the Pump app.",
+    "long": "The pump.fun app sends every trade through its own program as the transaction's top-level instruction (pump.fun, PumpSwap or Jupiter run underneath it); the pump.fun web site and other apps never call it. HookAgents refuses any buy where that program isn't on top. Buying on Jupiter Ultra, in FOMO, through terminals or straight from the pool is refused. Includes a required dev buy; sells and sends always work, and the rule ends at graduation. The Pump app only runs on mainnet, so on devnet nobody but you can buy.",
+    "chips": [
+      "Pump app program",
+      "sells anywhere",
+      "dev buy required"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "fomo-pump-buys",
+    "name": "FOMO + Pump buys",
+    "family": "where",
+    "emoji": "📲",
+    "short": "It can only be bought in the FOMO app or the Pump app. Sells work anywhere.",
+    "long": "Buys must come through FOMO (FOMO's signing wallet co-signs every FOMO trade) or the Pump app (its own program is the transaction's top-level instruction). Buying on Jupiter Ultra, through terminals or straight from the pool is refused. Selling and sending always work, and the rule ends when the curve graduates. Includes a required dev buy, and your wallet can buy anywhere. FOMO and the Pump app only run on mainnet, so on devnet nobody but you can buy.",
+    "chips": [
+      "FOMO or Pump",
+      "sells anywhere",
+      "dev buy required"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "social-trading",
+    "name": "Social trading",
+    "family": "where",
+    "emoji": "🤳",
+    "short": "It only trades in FOMO or the Pump app, buying and selling.",
+    "long": "Buys and sells only in FOMO or the Pump app. A FOMO trade is recognised by FOMO's signature, a Pump app trade by the app's own program on top of the transaction. Trading on Jupiter Ultra, terminals or straight with the pool is refused both ways. Sending between wallets always works, and the rule ends when the curve graduates. Pair it with Escape Hatch so holders can't be stranded if both apps drop it.",
+    "chips": [
+      "FOMO + Pump",
+      "buys and sells",
+      "dev buy required"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "market-hours",
+    "name": "Market hours",
+    "family": "where",
+    "emoji": "🏛️",
+    "short": "Trades like a stock: Monday to Friday, 9:30am to 4pm New York time.",
+    "long": "Only Monday to Friday, 9:30am to 4:00pm New York time. Outside the session HookAgents refuses the trade. You choose whether sells stay open around the clock and whether stock-market holidays are observed. Wallet-to-wallet sends always work. It can also be paired with a tokenized stock like NVDAx or TSLAx instead of SOL.",
+    "chips": [
+      "NYSE session",
+      "holidays",
+      "stock pairs"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "custom-calendar",
+    "name": "Custom Calendar",
+    "family": "where",
+    "emoji": "📅",
+    "short": "Draw your own trading week: weekends only, night owl, 4:20…",
+    "long": "Draw your own trading week in any timezone, up to 8 weekly windows. Presets: Weekends only, Night owl, 4:20, Happy hour, Asia session. Outside the windows, sells stay open by default.",
+    "chips": [
+      "your schedule",
+      "any timezone",
+      "presets"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "on-air",
+    "name": "On Air",
+    "family": "where",
+    "emoji": "🔴",
+    "short": "Buys only land while the creator is live.",
+    "long": "The HookAgents stream panel sends a tiny signed heartbeat every few minutes while you're live. When it goes stale, buys close; sells never do. Made for livestream launches: the chart can only climb while the dev is on camera.",
+    "chips": [
+      "creator heartbeat",
+      "● LIVE badge",
+      "sells always open"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "green-days",
+    "name": "Green Days Only",
+    "family": "where",
+    "emoji": "🟢",
+    "short": "Buys open only while SOL is green on the day (or red, for dip buyers).",
+    "long": "Buys open only while SOL (or BTC / ETH) is above its price at the day's first trade, read from Pyth's on-chain price feed. Flip it to Red days only for a buy-the-dip token. Sells always open.",
+    "chips": [
+      "Pyth oracle",
+      "green or red mode",
+      "sells always open"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "escape-hatch",
+    "name": "Escape Hatch",
+    "family": "where",
+    "emoji": "🚪",
+    "short": "If the allowed venues go quiet, the venue lock opens.",
+    "long": "If no trade has gone through the allowed venues for the idle time, the venue lock opens, so holders can never be stranded because an app dropped the token. It relocks once the venue trades again.",
+    "chips": [
+      "dead-man switch",
+      "no stranded holders",
+      "relocks"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "p2p-only",
+    "name": "P2P-only",
+    "family": "where",
+    "emoji": "🤝",
+    "short": "Moves wallet to wallet only until it graduates. Only you can buy the curve.",
+    "long": "The opposite of No wallet sends: it moves only wallet to wallet, and nobody can buy or sell it on a market. Only you can buy from the bonding curve, even all of it, and hand tokens out. When the curve fills up it graduates, the rule switches off, and it trades normally.",
+    "chips": [
+      "hand it out",
+      "creator buys the curve",
+      "graduates"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "buyer-rewards",
+    "name": "Buyer rewards",
+    "family": "paid",
+    "emoji": "🎁",
+    "short": "Every buy earns the buyer tokens from a vault you fill.",
+    "long": "Fill a vault with this token or any other token. Every qualifying buy through HookAgents earns the buyer a reward, which they claim in My vault, even if they've never held the reward token. Buys only earn while the vault can cover them. You can withdraw anything not already owed to buyers.",
+    "chips": [
+      "this or any token",
+      "claim in My vault",
+      "withdraw unused"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "diamond-bonus",
+    "name": "Diamond Bonus",
+    "family": "paid",
+    "emoji": "💎",
+    "short": "Buyer rewards that vest. Sell early and the reward goes back to the vault.",
+    "long": "Each qualifying buy earns a reward from the vault, but it unlocks only after the hold period, and selling or sending before then forfeits it back to the vault. Rewards holders, not flippers.",
+    "chips": [
+      "vesting rewards",
+      "forfeit on sell",
+      "rewards holders"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "tithe",
+    "name": "Tithe",
+    "family": "paid",
+    "emoji": "🕊️",
+    "short": "Every trade donates to a cause you choose, by construction.",
+    "long": "The same enforcement as a royalty, but the payment goes to a cause you name: a charity, a treasury, a public-goods fund.",
+    "chips": [
+      "per-trade donation",
+      "any recipient",
+      "enforced"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "split-tithe",
+    "name": "Split Tithe",
+    "family": "paid",
+    "emoji": "💸",
+    "short": "Every trade pays a fixed fee split between up to 3 wallets, the creator included.",
+    "long": "Every trade pays a fixed SOL amount split between up to three addresses: the creator, a cause, and the token's own Buyer-rewards vault. It gives creators a revenue line on every trade.",
+    "chips": [
+      "up to 3 recipients",
+      "creator revenue",
+      "buys / sells / both"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "reactive-pair",
+    "name": "Reactive pair",
+    "family": "linked",
+    "emoji": "🔗",
+    "short": "Its per-buy cap moves with a partner token's buying and selling.",
+    "long": "Two tokens that watch each other. Each one's per-buy cap loosens while the other is being bought and tightens while it's being sold, so momentum in one opens the door in the other. Sells are never capped. Launch the two together. The cap follows the partner's net buying over the last 10 to 20 minutes and stays between a tenth and twice the base cap.",
+    "chips": [
+      "two tokens",
+      "momentum-linked caps",
+      "launch together"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "entangled",
+    "name": "Entangled",
+    "family": "linked",
+    "emoji": "🧲",
+    "short": "Locked until its Beacon token reaches a market cap you choose.",
+    "long": "Stays locked until its Beacon token's market cap reaches the target you set. Then it unlocks for good, even if the Beacon falls back later. Launch the two as a pair.",
+    "chips": [
+      "beacon unlock",
+      "one-way",
+      "pair launch"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "beacon",
+    "name": "Beacon",
+    "family": "linked",
+    "emoji": "🗼",
+    "short": "Trade it freely. When its market cap hits the target, its Entangled token unlocks.",
+    "long": "Trades freely with no cap. HookAgents remembers the highest market cap it has reached, and hitting the target is what unlocks its Entangled partner.",
+    "chips": [
+      "no cap",
+      "records its high",
+      "unlocks the partner"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "tug-of-war",
+    "name": "Tug of War",
+    "family": "linked",
+    "emoji": "🪢",
+    "short": "Two rival tokens: buys only open on whichever is behind.",
+    "long": "Two rival tokens launch together. Buys only open on the one that's behind in market cap (or both, while they're within the tie band). The leader can only be held or sold, so they keep swapping places. Sells always work.",
+    "chips": [
+      "rival pair",
+      "underdog buys only",
+      "live tug bar"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "parent-allowance",
+    "name": "Parent Allowance",
+    "family": "linked",
+    "emoji": "👨‍👧",
+    "short": "Your max per wallet depends on how much of the parent token you hold.",
+    "long": "A child token where your max per wallet equals your share of the parent token times a multiplier: hold 0.5% of $PARENT and you can hold up to 1% of $CHILD at ×2. Non-holders get a small base allowance. Any community token becomes the key to its spin-offs.",
+    "chips": [
+      "parent-weighted cap",
+      "ecosystem key",
+      "auto-derived"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "musical-chairs",
+    "name": "Musical Chairs",
+    "family": "games",
+    "emoji": "🪑",
+    "short": "Every round opens a set number of seats. Each buy takes one. Seats gone? Wait for the next round.",
+    "long": "One card, two games. Seats every round (default): every round you set (say 10 minutes), a fixed number of seats opens (say 20). Each buy of at least the minimum takes one seat; one wallet takes at most a few seats per round, a seat is kept only if the wallet holds for the hold time (leave early and the seats go back, and that wallet sits out the rest of the round), and no seat is taken in the closing seconds of a round. When the round's seats are gone, every other buy is refused until the next round opens with fresh seats, so buyers line up. Sells and sends never wait, and your own wallet is exempt. Members only (classic): a fixed number of wallets may hold at once; a new wallet gets in only when a holder sells out completely. The token page shows the live seat board and the countdown. Pair it with Human Check: a bot with many wallets can still take a round's seats at the open.",
+    "chips": [
+      "seats per round",
+      "seats per wallet",
+      "live seat board"
+    ],
+    "isNew": false
+  },
+  {
+    "id": "last-buyer-wins",
+    "name": "Last Buyer Wins",
+    "family": "games",
+    "emoji": "⏳",
+    "short": "Every big buy resets the clock. When it runs out, the last buyer takes the pot.",
+    "long": "A countdown pot. You (and anyone else) fund a pot in SOL. Every buy above the minimum takes the crown and resets the clock. When time runs out, anyone can settle: the pot pays the crown holder and a new round starts with the rollover.",
+    "chips": [
+      "countdown",
+      "crown + pot",
+      "rounds"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "scratch-cards",
+    "name": "Scratch Cards",
+    "family": "games",
+    "emoji": "🎟️",
+    "short": "Every buy is a sealed scratch card, revealed by a future block.",
+    "long": "Every buy over the minimum gets a sealed ticket. Its result is decided by the block hash of the slot after the buy, so nobody knows whether it won when it lands, and bots can't revert a losing buy. The keeper reveals tickets; winners claim from a vault you fill. One open ticket per wallet.",
+    "chips": [
+      "commit-reveal",
+      "can't be gamed by reverts",
+      "winners feed"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "paper-hands-jail",
+    "name": "Paper-Hands Jail",
+    "family": "games",
+    "emoji": "🚔",
+    "short": "Sell within minutes of buying and you can't buy again for a day.",
+    "long": "Buys write the time into the wallet's entry in the token's table; a quick sell flips the entry to 'jailed until…'. A jailed wallet can't buy until its sentence ends. Sends still work. Entries expire on their own, with no per-wallet rent.",
+    "chips": [
+      "public jail list",
+      "auto-expiring",
+      "no rent"
+    ],
+    "isNew": true
+  },
+  {
+    "id": "happy-hour",
+    "name": "Happy Hour",
+    "family": "games",
+    "emoji": "🍻",
+    "short": "Once a day the caps double for an hour, and nobody knows which hour.",
+    "long": "Once a day, at a time drawn from a block hash that doesn't exist yet when the day's first trade is sent, every wallet cap and trade-size cap on the token multiplies by the setting. The token page lights up 'HAPPY HOUR LIVE' when it starts. Needs at least one cap rule.",
+    "chips": [
+      "random daily hour",
+      "caps ×2",
+      "modifier"
+    ],
+    "isNew": true
+  }
+]
