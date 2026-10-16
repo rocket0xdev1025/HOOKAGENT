@@ -11,7 +11,7 @@ export default function Home() {
             <p className="b-eyebrow">
               <i className="b-rec" /> {CHAIN.name} <span>chain {CHAIN.id} · USDG credit for agents</span>
             </p>
-            <h1 className="c-h1">
+            <h1 className="c-h1"> 
               <span>Reviews can be faked.</span>
               <span className="c-out">Repaid loans can't.</span>
             </h1>
