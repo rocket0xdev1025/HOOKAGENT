@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ADDRESSES, AGENTS, CHAIN, PARAMS, UPDATES, agentById, shortAddr } from "../data";
-import { AgentMark } from "../components/Art";
+import { Portrait } from "../components/Art";
 
 function PageHero({ kicker, title, lede, children }) {
   return (
@@ -28,7 +28,7 @@ export function Agents() {
         <div className="wrap card-grid">
           {AGENTS.map((agent) => (
             <Link className="cast-card" to={`/agent/${agent.id}`} key={agent.id}>
-              <AgentMark name={agent.short} accent={agent.accent} />
+              <Portrait person={agent.person || "mira"} />
               <div>
                 <b>{agent.name}</b>
                 <span>#{agent.id} · {agent.line}</span>
@@ -59,7 +59,7 @@ export function AgentPage() {
       <section className="char-hero">
         <div className="wrap char-grid">
           <div className="char-portrait">
-            <AgentMark name={agent.short} accent={agent.accent} />
+            <Portrait person={agent.person || "mira"} />
           </div>
           <div>
             <span className={`b-live ${agent.status}`}>

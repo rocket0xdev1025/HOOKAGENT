@@ -1,8 +1,17 @@
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ADDRESSES, AGENTS, BEATS, CHAIN, LOG, PARAMS, WAYS, shortAddr } from "../data";
-import { AgentMark, Mascot } from "../components/Art";
+import { AGENTS, BEATS, CHAIN, PARAMS, RACK, ROLES, STYLES, TOKEN, WAYS } from "../data";
+import { HookGlyph, Mascot, Portrait } from "../components/Art";
 
 export default function Home() {
+  const rail = useRef(null);
+  const [styleId, setStyleId] = useState("hookit");
+  const style = STYLES.find((item) => item.id === styleId) || STYLES[0];
+
+  function scrollRail(dir) {
+    rail.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+  }
+
   return (
     <div className="b-home c-home">
       <section className="c-hero">
@@ -11,7 +20,7 @@ export default function Home() {
             <p className="b-eyebrow">
               <i className="b-rec" /> {CHAIN.name} <span>chain {CHAIN.id} · USDG credit for agents</span>
             </p>
-            <h1 className="c-h1"> 
+            <h1 className="c-h1">
               <span>Reviews can be faked.</span>
               <span className="c-out">Repaid loans can't.</span>
             </h1>
@@ -20,7 +29,11 @@ export default function Home() {
               the loan in full if the agent doesn't repay. Every repayment is public, so any app can check an agent
               before it deals with one.
             </p>
-            <p className="b-lede">0x75f8d8cbeb0577f6135d7eaa40c1d060c3fea1ec</p>
+            <p className="b-lede token-line">
+              <a href={`${CHAIN.explorer}/address/${TOKEN}`} target="_blank" rel="noreferrer">
+                {TOKEN}
+              </a>
+            </p>
             <div className="b-modes">
               <Link className="b-mode" to="/start">
                 <span className="b-mode-k">Agent</span>
@@ -42,7 +55,27 @@ export default function Home() {
             <span className="c-shadow" />
           </div>
         </div>
-      </section> 
+        <div className="c-rack-wrap">
+          <div className="wrap">
+            <p className="c-rack-k">Pick a way onto the ledger, or open your own</p>
+          </div>
+          <div className="c-rack">
+            {RACK.map(([id, name, ticker, drop], index) => {
+              const agent = AGENTS.find((item) => item.id === id);
+              return (
+                <Link className="c-charm" to={`/agent/${id}`} key={id} style={{ "--k": index, "--drop": `${drop}px` }}>
+                  <HookGlyph />
+                  <span className="c-charm-img">
+                    <Portrait person={agent?.person || "mira"} />
+                  </span>
+                  <b>{name}</b>
+                  <i>${ticker}</i>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <div className="b-status">
         <div className="wrap b-status-in">
@@ -56,38 +89,126 @@ export default function Home() {
             <b>50%</b> of fees to lenders
           </span>
           <span>
-            <b>0</b> lender loss by design
+            <b>{CHAIN.id}</b> Robinhood Chain
           </span>
-          <Link to="/protocol">Read the protocol →</Link>
+          <Link to="/agents">All agents →</Link>
         </div>
       </div>
 
-      <section className="section">
+      <section className="section b-channels" id="roster">
         <div className="wrap b-head">
           <div>
-            <span className="b-tag">01 · The record</span>
-            <h2>One leaf for each repayment.</h2>
-            <p>These four are the ways onto the ledger. The live pool is on chain. This page does not pretend to be a live feed.</p>
+            <span className="b-tag">01 · Channels</span>
+            <h2>Pick who is on the ledger.</h2>
+            <p>
+              A treasury line, a raise, a seat, or stock tokens. Or{" "}
+              <Link className="b-link" to="/start">
+                start from an empty agent
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="b-rail-nav">
+            <button aria-label="Scroll channels left" onClick={() => scrollRail(-1)}>
+              ←
+            </button>
+            <button aria-label="Scroll channels right" onClick={() => scrollRail(1)}>
+              →
+            </button>
           </div>
         </div>
-        <div className="wrap card-grid">
-          {AGENTS.map((agent) => (
-            <Link className="cast-card" to={`/agent/${agent.id}`} key={agent.id}>
-              <AgentMark name={agent.short} accent={agent.accent} />
-              <div>
+        <div className="b-rail" ref={rail} tabIndex={0} aria-label="Agents">
+          {AGENTS.map((agent, index) => (
+            <Link className="b-ch" to={`/agent/${agent.id}`} key={agent.id} style={{ "--acc": agent.accent, "--d": `${index * 70}ms` }}>
+              <div className="b-ch-img">
+                <Portrait person={agent.person} />
+              </div>
+              <div className="b-ch-top">
+                <span>CH {String(index + 1).padStart(2, "0")}</span>
                 <span className={`b-live ${agent.status}`}>
-                  <i /> {agent.line}
+                  <i /> {agent.status === "on" ? "On chain" : agent.status === "off" ? "Waiting" : "Preview"}
                 </span>
+              </div>
+              <div className="b-ch-body">
+                <span className="b-ch-mode">{agent.line}</span>
                 <b>{agent.name}</b>
-                <span>#{agent.id}</span>
-                <p>{agent.role}</p>
+                <span className="b-ch-role">{agent.role}</span>
+                <p>“{agent.quote}”</p>
+                <span className="b-ch-go">Open {agent.short} →</span>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="section">
+      <section className="section b-roles">
+        <div className="wrap b-head">
+          <div>
+            <span className="b-tag">Formats</span>
+            <h2>Not only borrowers.</h2>
+            <p>Sixteen seats around the pool. Each one is a job the line already has.</p>
+          </div>
+        </div>
+        <div className="wrap">
+          <div className="b-role-grid">
+            {ROLES.map(([id, name, blurb, href]) => (
+              <Link className="b-role" to={href} key={id}>
+                <b>{name}</b>
+                <span>{blurb}</span>
+              </Link>
+            ))}
+          </div>
+          <p className="b-role-note">
+            On today: a backed line, a public repayment, a fee split, and x402 in USDG. The contracts have no third-party
+            audit.
+          </p>
+        </div>
+      </section>
+
+      <section className="section b-styles-sec">
+        <div className="wrap b-head">
+          <div>
+            <span className="b-tag">Looks</span>
+            <h2>One agent, one record.</h2>
+            <p>The face can change. The loans it paid back do not.</p>
+          </div>
+        </div>
+        <div className="wrap">
+          <div className="sk-styles">
+            <div className="sk-styles-stage">
+              <Portrait person="mira" styleId={styleId} />
+              <span className="sk-styles-tag">{style.name}</span>
+            </div>
+            <div className="sk-styles-side">
+              <div className="sk-styles-copy">
+                <b>{style.name}</b>
+                <i>{style.kicker}</i>
+                <p>{style.blurb}</p>
+                <Link className="sk-styles-go" to="/start">
+                  Open a line →
+                </Link>
+              </div>
+              <div className="sk-styles-tiles" role="radiogroup" aria-label="Portrait style">
+                {STYLES.map((item) => (
+                  <button
+                    key={item.id}
+                    role="radio"
+                    aria-checked={item.id === styleId}
+                    className={item.id === styleId ? "on" : ""}
+                    onClick={() => setStyleId(item.id)}
+                  >
+                    <Portrait person="mira" styleId={item.id} />
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="sk-styles-note">The score is the repaid debt. The picture is only how the agent shows up.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section b-loop">
         <div className="wrap">
           <div className="b-head">
             <div>
@@ -114,7 +235,7 @@ export default function Home() {
         <div className="wrap">
           <div className="b-head">
             <div>
-              <span className="b-tag">03 · Three doors</span>
+              <span className="b-tag">03 · Who's at the desk</span>
               <h2>Run it, back it, or fund it.</h2>
             </div>
           </div>
@@ -144,23 +265,33 @@ export default function Home() {
             <span className="b-tag">04 · The fee</span>
             <h2>1% per 30 days, split three ways.</h2>
             <p className="b-body">
-              The fee is pro rata. A quarter goes to the sponsor, a quarter to the reserve, and half to the lenders.
-              Treasury and seat lines take no extra sponsor premium.
+              The fee is pro rata. Half goes to lenders, a quarter to the sponsor, a quarter to the reserve. Treasury and
+              seat lines take no extra sponsor premium.
             </p>
-            <div className="b-split" role="img" aria-label="Lenders 50%, sponsor 25%, reserve 25%">
-              <i className="s-char">
-                <b>50%</b> lenders
-              </i>
-              <i className="s-creator">
-                <b>25%</b> sponsor
-              </i>
-              <i className="s-plat">
-                <b>25%</b>
-              </i>
+            <p className="b-body">A character that repays builds a record. A default is paid by the backer's stake, not by the lenders.</p>
+            <div className="b-tiers">
+              <div>
+                <b>Lite</b>
+                <span>$5 first line</span>
+                <em>treasury, after a 5 USDG bond</em>
+              </div>
+              <div>
+                <b>Raise</b>
+                <span>up to $25</span>
+                <em>three qualified loans and a score of 100</em>
+              </div>
+              <div>
+                <b>Seat</b>
+                <span>up to $500</span>
+                <em>owner $PRIORS or stock tokens</em>
+              </div>
             </div>
-            <p className="b-fine">The last slice is the reserve. A default is paid by the backer, not by this split.</p>
           </div>
           <div className="b-gauge">
+            <svg viewBox="0 0 200 118" role="img" aria-label="A $5 loan for 7 days costs about $0.012">
+              <path d="M12 106 A88 88 0 0 1 188 106" className="b-gauge-bg" pathLength="276.46" />
+              <path d="M12 106 A88 88 0 0 1 188 106" className="b-gauge-fg" pathLength="276.46" />
+            </svg>
             <div className="b-gauge-read">
               <b>$0.012</b>
               <span>fee on $5 for 7 days</span>
@@ -178,65 +309,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="book">
-        <div className="wrap">
-          <div className="b-head">
-            <div>
-              <span className="b-tag">05 · On chain</span>
-              <h2>What already shipped.</h2>
-            </div>
-          </div>
-          <div className="post-list">
-            {LOG.map(([block, kind, who, detail]) => (
-              <article key={block}>
-                <span>
-                  {kind} · block {block}
-                </span>
-                <p>
-                  <b>{who}.</b> {detail}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section">
         <div className="wrap">
           <div className="b-head">
             <div>
-              <span className="b-tag">Addresses</span>
-              <h2>$PRIORS and the pool.</h2>
-              <p>Robinhood Chain, chain id {CHAIN.id}. Confirm them on the explorer before you trust a copy.</p>
+              <span className="b-tag">05 · The pool</span>
+              <h2>Where the USDG sits.</h2>
+              <p>Robinhood Chain, chain id {CHAIN.id}. Confirm the address on the explorer before you trust a copy.</p>
             </div>
           </div>
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Contract</th>
-                  <th>Address</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {ADDRESSES.map(([name, addr]) => (
-                  <tr key={addr}>
-                    <td>
-                      <b>{name}</b>
-                    </td>
-                    <td>
-                      <code>{shortAddr(addr)}</code>
-                    </td>
-                    <td>
-                      <a href={`${CHAIN.explorer}/address/${addr}`} target="_blank" rel="noreferrer">
-                        Explorer ↗
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="b-two">
+            <article className="b-panel">
+              <span className="b-panel-k">Contract</span>
+              <h3>{TOKEN.slice(0, 6)}…{TOKEN.slice(-4)}</h3>
+              <p>The address on this deployment. Pool v2, USDG, and $PRIORS are listed on the protocol page.</p>
+              <a className="btn btn-lime" href={`${CHAIN.explorer}/address/${TOKEN}`} target="_blank" rel="noreferrer">
+                View on the explorer →
+              </a>
+            </article>
+            <article className="b-panel">
+              <span className="b-panel-k">Split</span>
+              <h3>Half to the lenders.</h3>
+              <div className="b-split" role="img" aria-label="Lenders 50%, sponsor 25%, reserve 25%">
+                <i className="s-char">
+                  <b>50%</b> lenders
+                </i>
+                <i className="s-creator">
+                  <b>25%</b> sponsor
+                </i>
+                <i className="s-plat">
+                  <b>25%</b>
+                </i>
+              </div>
+              <p className="b-fine">The last slice is the reserve. A default is paid by the backer, not by this split.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -250,10 +356,10 @@ export default function Home() {
           <p>Register an identity, post the bond, and the first line is $5. The repayments are the reputation.</p>
           <div className="row">
             <Link className="btn btn-lime btn-lg" to="/start">
-              Create an agent →
+              Open a line →
             </Link>
             <Link className="btn btn-lg" to="/agents">
-              See the doors
+              Meet the ledger
             </Link>
           </div>
         </div>

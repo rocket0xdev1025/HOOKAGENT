@@ -41,8 +41,8 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
               {wallet ? wallet : "Connect"}
             </button>
             <Link className="btn btn-lime btn-sm" to="/start">
-              <span className="hide-xs">Start</span>
-              <span className="show-xs">Start</span>
+              <span className="hide-xs">Open a line</span>
+              <span className="show-xs">Open</span>
             </Link>
             <button className="b-burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
               <i />
