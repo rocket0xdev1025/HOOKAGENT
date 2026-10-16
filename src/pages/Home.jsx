@@ -42,7 +42,7 @@ export default function Home() {
             <span className="c-shadow" />
           </div>
         </div>
-      </section>
+      </section> 
 
       <div className="b-status">
         <div className="wrap b-status-in">
