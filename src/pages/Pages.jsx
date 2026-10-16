@@ -1,19 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { CHARACTERS, COINS, ROLES, STYLES, characterById } from "../data";
-import { Portrait } from "../components/Art";
-import RulesExplorer from "../components/RulesExplorer";
-import rules from "../rules.json";
-
-const STORE = "hookagents-casts";
-
-function loadCasts() {
-  try {
-    return JSON.parse(localStorage.getItem(STORE) || "[]");
-  } catch {
-    return [];
-  }
-}
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ADDRESSES, AGENTS, CHAIN, PARAMS, UPDATES, agentById, shortAddr } from "../data";
+import { AgentMark } from "../components/Art";
 
 function PageHero({ kicker, title, lede, children }) {
   return (
@@ -28,45 +16,23 @@ function PageHero({ kicker, title, lede, children }) {
   );
 }
 
-export function Characters() {
-  const [casts, setCasts] = useState([]);
-  useEffect(() => setCasts(loadCasts()), []);
+export function Agents() {
   return (
     <>
-      <PageHero
-        kicker="Roster"
-        title="All characters."
-        lede="Two are live on a coin. The rest are ready-made people you can rename, restyle and launch."
-      >
-        <Link className="btn btn-lime" to="/create">
-          Open the studio →
+      <PageHero kicker="Agents" title="Ways onto the ledger." lede="A new agent starts at the treasury. A longer record can raise the line, take a seat, or post stock tokens.">
+        <Link className="btn btn-lime" to="/start">
+          Create an agent →
         </Link>
       </PageHero>
       <section className="section">
         <div className="wrap card-grid">
-          {CHARACTERS.map((character) => (
-            <Link className="cast-card" to={`/c/${character.id}`} key={character.id}>
-              <Portrait person={character.id} />
+          {AGENTS.map((agent) => (
+            <Link className="cast-card" to={`/agent/${agent.id}`} key={agent.id}>
+              <AgentMark name={agent.short} accent={agent.accent} />
               <div>
-                <span className={`b-live ${character.status}`}>
-                  <i /> {character.status === "on" ? "On air" : character.status === "off" ? "Asleep" : "Showcase"}
-                </span>
-                <b>{character.name}</b>
-                <span>${character.ticker}</span>
-                <p>{character.role}</p>
-              </div>
-            </Link>
-          ))}
-          {casts.map((cast) => (
-            <Link className="cast-card" to={`/c/${cast.id}`} key={cast.id}>
-              <Portrait person="sample" styleId={cast.style} />
-              <div>
-                <span className="b-live demo">
-                  <i /> Draft
-                </span>
-                <b>{cast.name}</b>
-                <span>${cast.ticker}</span>
-                <p>{cast.mode}</p>
+                <b>{agent.name}</b>
+                <span>#{agent.id} · {agent.line}</span>
+                <p>{agent.quote}</p>
               </div>
             </Link>
           ))}
@@ -76,77 +42,33 @@ export function Characters() {
   );
 }
 
-export function CharacterPage() {
+export function AgentPage() {
   const { id } = useParams();
-  const preset = characterById(id);
-  const cast = loadCasts().find((item) => item.id === id);
-  const character = preset || (cast
-    ? {
-        id: cast.id,
-        name: cast.name,
-        short: cast.name,
-        ticker: cast.ticker,
-        role: cast.roles?.join(" · ") || "Experiment",
-        mode: cast.mode,
-        status: "demo",
-        accent: "#ece3cf",
-        quote: cast.blurb || "Waiting for the first wake.",
-        bio: cast.blurb || "A character drafted in the studio. Fuel has not landed, so it has not woken.",
-        posts: ["Draft saved in this browser.", "No coin yet.", "The face is locked to the style you picked."],
-        style: cast.style,
-        person: "sample",
-      }
-    : null);
-
-  if (!character) {
+  const agent = agentById(id);
+  if (!agent) {
     return (
-      <PageHero kicker="Missing" title="Nobody by that name.">
-        <Link className="btn" to="/characters">
-          Back to characters
+      <PageHero kicker="Missing" title="No agent with that id.">
+        <Link className="btn" to="/agents">
+          Back to agents
         </Link>
       </PageHero>
     );
   }
-
-  const status = character.status === "on" ? "On air" : character.status === "off" ? "Asleep" : "Showcase";
-
   return (
     <>
       <section className="char-hero">
         <div className="wrap char-grid">
           <div className="char-portrait">
-            <Portrait person={character.person || character.id} styleId={character.style || "hookit"} />
+            <AgentMark name={agent.short} accent={agent.accent} />
           </div>
           <div>
-            <span className={`b-live ${character.status}`}>
-              <i /> {status}
+            <span className={`b-live ${agent.status}`}>
+              <i /> Line {agent.line}
             </span>
-            <h1>{character.name}</h1>
-            <p className="ticker">${character.ticker}</p>
-            <p className="b-lede">{character.bio}</p>
-            <div className="meta-row">
-              <span>{character.mode}</span>
-              <span>{character.role}</span>
-            </div>
-            <blockquote>“{character.quote}”</blockquote>
-          </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="wrap">
-          <div className="b-head">
-            <div>
-              <span className="b-tag">Posts</span>
-              <h2>What it already said.</h2>
-            </div>
-          </div>
-          <div className="post-list">
-            {character.posts.map((post) => (
-              <article key={post}>
-                <span>X · marked as AI</span>
-                <p>{post}</p>
-              </article>
-            ))}
+            <h1>{agent.name}</h1>
+            <p className="ticker">ERC-8004 #{agent.id}</p>
+            <p className="b-lede">{agent.bio}</p>
+            <blockquote>“{agent.quote}”</blockquote>
           </div>
         </div>
       </section>
@@ -154,74 +76,157 @@ export function CharacterPage() {
   );
 }
 
-export function Timeline() {
-  const events = [
-    ["Wake", "Alex Silva", "Clock", "Hourly wake. Coin flat, two holders."],
-    ["Think", "Alex Silva", "Included", "Decides to post the session, not the chart."],
-    ["Post", "Alex Silva", "$0.015", "Sent to its X account, marked as made with AI."],
-    ["Wake", "HookCat", "Skipped", "Wallet empty. Stays asleep."],
-    ["Make", "Mira Vale", "Showcase", "A clip of the chest with teeth. Not a live coin."],
-  ];
+export function Start() {
+  const [id, setId] = useState("");
   return (
     <>
       <PageHero
-        kicker="Public log"
-        title="Timeline."
-        lede="Every wake is four beats. The live ones spend fuel. The showcase ones are examples."
+        kicker="Start"
+        title="Create an agent."
+        lede="On mainnet this is an ERC-8004 registration, then a 5 USDG bond, then a $5 line from treasury v5. This page only keeps a note. It does not sign anything."
       />
       <section className="section">
-        <div className="wrap timeline">
-          {events.map(([beat, name, chip, copy]) => (
-            <article key={copy}>
-              <span className="b-beat-n">{beat}</span>
-              <b>{name}</b>
-              <span className="b-chip">{chip}</span>
-              <p>{copy}</p>
-            </article>
-          ))}
+        <form
+          className="wrap studio"
+          onSubmit={(event) => {
+            event.preventDefault();
+            const note = { id: id || "pending", at: Date.now() };
+            const prev = JSON.parse(localStorage.getItem("priors-starts") || "[]");
+            prev.unshift(note);
+            localStorage.setItem("priors-starts", JSON.stringify(prev.slice(0, 20)));
+            setId("saved");
+          }}
+        >
+          <label>
+            What the agent is for
+            <textarea name="purpose" rows={4} required placeholder="Pays for data, posts a record, repays in seven days." />
+          </label>
+          <button className="btn btn-lime" type="submit">
+            Save a local note
+          </button>
+          {id === "saved" && <p className="b-fine">Saved in this browser. The chain step is still yours to sign, from a wallet you control.</p>}
+        </form>
+      </section>
+    </>
+  );
+}
+
+export function Invite() {
+  return (
+    <PageHero
+      kicker="First line"
+      title="Five dollars, fully backed."
+      lede="Treasury v5 opens a $5 line after the owner locks a 5 USDG bond. The bond comes back when the agent has no line, no open loan, and no default, and at least four days have passed. A default sends the bond to the Safe."
+    >
+      <Link className="btn btn-lime" to="/start">
+        Begin →
+      </Link>
+    </PageHero>
+  );
+}
+
+export function Participate({ wallet }) {
+  return (
+    <>
+      <PageHero
+        kicker="Participate"
+        title="Lend, stake, or vouch."
+        lede={wallet ? `Demo session ${wallet}. Nothing here moves USDG.` : "Connect a demo label if you want this browser marked. Deposits on the real pool happen from your own wallet."}
+      />
+      <section className="section">
+        <div className="wrap b-two">
+          <article className="b-panel">
+            <span className="b-panel-k">Lend</span>
+            <h3>Deposit USDG</h3>
+            <p>Lenders earn 50% of every fee. Leaving within 7 days of a deposit leaves 0.5% for the lenders who stayed.</p>
+          </article>
+          <article className="b-panel">
+            <span className="b-panel-k">Root</span>
+            <h3>Stake at least $10</h3>
+            <p>A root vouches for agents with the owner's signed consent and earns the sponsor share of their fees.</p>
+          </article>
         </div>
       </section>
     </>
   );
 }
 
-export function Launches() {
+export function Borrow() {
   return (
     <>
-      <PageHero kicker="Coins" title="Where they trade." lede="Live coins sit on pump.fun. Showcase characters are faces you can start from. They do not have a market.">
-        <Link className="btn btn-lime" to="/launch">
-          Launch a coin →
+      <PageHero
+        kicker="Stocks"
+        title="Borrow without selling the token."
+        lede="Deposit a Robinhood stock token on Robinhood Chain, draw USDG against it, and the vault returns the token when you repay. A default keeps what is owed plus 20% and sends the rest back."
+      >
+        <Link className="btn" to="/stocks">
+          Open a stock line
         </Link>
       </PageHero>
       <section className="section">
-        <div className="wrap">
+        <div className="wrap b-tiers">
+          <div>
+            <b>25–70%</b>
+            <span>of Chainlink value</span>
+            <em>never above 70%, never above $500</em>
+          </div>
+          <div>
+            <b>+20%</b>
+            <span>kept on a default</span>
+            <em>the rest of the tokens come back</em>
+          </div>
+          <div>
+            <b>30 days</b>
+            <span>idle expiry</span>
+            <em>7 days if the line was never drawn</em>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function Stocks() {
+  return (
+    <PageHero
+      kicker="Stock line"
+      title="Your tokens, the vault's line."
+      lede="Thirty-five stock tokens are accepted. Each has its own open-line cap. A record of repaid treasury credit can add up to 15 points of loan-to-value, still capped at 70%."
+    />
+  );
+}
+
+export function Protocol() {
+  return (
+    <>
+      <PageHero kicker="Protocol" title="Every line is backed." lede="v2 dropped unbacked credit. Capacity comes from a backer's locked pool shares. A default burns shares worth the principal and the fee. The share price does not fall from that default." />
+      <section className="section">
+        <div className="wrap docs">
+          {PARAMS.map(([k, v]) => (
+            <article key={k}>
+              <h2>{k}</h2>
+              <p>{v}</p>
+            </article>
+          ))}
+          <article>
+            <h2>No audit</h2>
+            <p>v2 has had internal review and no third-party audit. No path to lender principal was found. That is not a proof. Launch sizes stay small for that reason.</p>
+          </article>
+        </div>
+        <div className="wrap" style={{ marginTop: 28 }}>
           <div className="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Coin</th>
-                  <th>Venue</th>
-                  <th>Status</th>
-                  <th>Holders</th>
-                  <th>Mcap</th>
-                  <th></th>
-                </tr>
-              </thead>
               <tbody>
-                {COINS.map((coin) => (
-                  <tr key={coin.ticker}>
+                {ADDRESSES.map(([name, addr]) => (
+                  <tr key={addr}>
                     <td>
-                      <b>${coin.ticker}</b>
-                      <span>{coin.name}</span>
+                      <b>{name}</b>
                     </td>
-                    <td>{coin.venue}</td>
-                    <td>{coin.status}</td>
-                    <td>{coin.holders}</td>
                     <td>
-                      {coin.mcap}
-                      <small>{coin.change}</small>
+                      <a href={`${CHAIN.explorer}/address/${addr}`} target="_blank" rel="noreferrer">
+                        {shortAddr(addr)}
+                      </a>
                     </td>
-                    <td />
                   </tr>
                 ))}
               </tbody>
@@ -233,337 +238,23 @@ export function Launches() {
   );
 }
 
-export function Launch() {
-  return (
-    <>
-      <PageHero
-        kicker="Launch"
-        title="Pick the curve."
-        lede="Both venues lock the character's share at launch. The creator and HookAgents cannot cut that income later."
-      />
-      <section className="section">
-        <div className="wrap b-two">
-          <article className="b-panel">
-            <span className="b-panel-k">Default</span>
-            <h3>pump.fun</h3>
-            <p>One transaction creates the coin and locks the fee split. Rules from the catalog do not apply here.</p>
-            <Link className="btn btn-lime" to="/create?venue=pump">
-              Continue in the studio →
-            </Link>
-          </article>
-          <article className="b-panel">
-            <span className="b-panel-k">Optional</span>
-            <h3>HookAgents curve</h3>
-            <p>A Meteora bonding curve. Stack rules that don't do the same job twice. They are checked on every transfer until graduation.</p>
-            <Link className="btn" to="/launch/rules">
-              Pick a rule →
-            </Link>
-          </article>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function RulesPage() {
-  const [params] = useSearchParams();
-  const rule = params.get("rule") || "max-per-wallet";
-  const found = rules.find((item) => item.id === rule);
-  return (
-    <>
-      <PageHero kicker="Rules" title="Stack a rule." lede="Fair launch is open. The other families are on the same coin, as long as two rules don't claim the same job." />
-      <RulesExplorer initialFamily={found?.family || "fair"} initialRule={found?.id || "max-per-wallet"} />
-    </>
-  );
-}
-
-export function Create() {
-  const [params] = useSearchParams();
-  const [step, setStep] = useState(0);
-  const [saved, setSaved] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    ticker: "",
-    mode: params.get("mode") === "creator" ? "Creator-led" : "Autonomous",
-    role: params.get("role") || "influencer",
-    style: params.get("style") || "hookit",
-    venue: params.get("venue") === "curve" ? "HookAgents curve" : "pump.fun",
-    blurb: "",
-    share: 60,
-  });
-
-  const roleName = ROLES.find((role) => role[0] === form.role)?.[1] || "Influencer";
-  const styleName = STYLES.find((style) => style.id === form.style)?.name || "HookAgents";
-
-  function set(key, value) {
-    setForm((current) => ({ ...current, [key]: value }));
-    setSaved(false);
-  }
-
-  function save(event) {
-    event.preventDefault();
-    if (!form.name.trim() || !form.ticker.trim()) {
-      setStep(0);
-      return;
-    }
-    const id = form.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `cast-${Date.now()}`;
-    const next = loadCasts().filter((item) => item.id !== id);
-    next.unshift({ ...form, id, roles: [roleName], createdAt: Date.now() });
-    localStorage.setItem(STORE, JSON.stringify(next));
-    setSaved(id);
-  }
-
-  const steps = ["Cast", "Face", "Coin", "Review"];
-
-  return (
-    <>
-      <PageHero kicker="Studio" title="Make the character." lede="Describe them, pick a face, set the split. This studio saves a draft in the browser. It does not create a coin or move funds." />
-      <section className="section">
-        <form className="wrap studio" onSubmit={save}>
-          <div className="steps">
-            {steps.map((label, index) => (
-              <button type="button" key={label} className={index === step ? "on" : ""} onClick={() => setStep(index)}>
-                0{index + 1} {label}
-              </button>
-            ))}
-          </div>
-          {step === 0 && (
-            <div className="studio-grid">
-              <label>
-                Name
-                <input value={form.name} onChange={(event) => set("name", event.target.value)} placeholder="Alex Silva" required />
-              </label>
-              <label>
-                Ticker
-                <input value={form.ticker} onChange={(event) => set("ticker", event.target.value.toUpperCase().slice(0, 10))} placeholder="ALEX" required />
-              </label>
-              <label>
-                Mode
-                <select value={form.mode} onChange={(event) => set("mode", event.target.value)}>
-                  <option>Autonomous</option>
-                  <option>Creator-led</option>
-                </select>
-              </label>
-              <label>
-                Role
-                <select value={form.role} onChange={(event) => set("role", event.target.value)}>
-                  {ROLES.map(([id, name]) => (
-                    <option value={id} key={id}>
-                      {name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="span-2">
-                What they are like
-                <textarea value={form.blurb} onChange={(event) => set("blurb", event.target.value)} placeholder="Honest, specific, a little stubborn." rows={4} />
-              </label>
-            </div>
-          )}
-          {step === 1 && (
-            <div className="style-pick">
-              <div className="sk-styles-stage slim">
-                <Portrait person="sample" styleId={form.style} />
-              </div>
-              <div className="sk-styles-tiles">
-                {STYLES.map((style) => (
-                  <button type="button" key={style.id} className={form.style === style.id ? "on" : ""} onClick={() => set("style", style.id)}>
-                    <Portrait person="sample" styleId={style.id} />
-                    <span>{style.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {step === 2 && (
-            <div className="studio-grid">
-              <label>
-                Venue
-                <select value={form.venue} onChange={(event) => set("venue", event.target.value)}>
-                  <option>pump.fun</option>
-                  <option>HookAgents curve</option>
-                </select>
-              </label>
-              <label>
-                Character share of creator fees · {form.share}%
-                <input type="range" min="40" max="80" value={form.share} onChange={(event) => set("share", Number(event.target.value))} />
-              </label>
-              <p className="b-fine span-2">The rest is split between the creator and HookAgents. The split locks at launch.</p>
-            </div>
-          )}
-          {step === 3 && (
-            <div className="review">
-              <Portrait person="sample" styleId={form.style} />
-              <div>
-                <h2>{form.name || "Unnamed"}</h2>
-                <p>
-                  ${form.ticker || "TICKER"} · {form.mode} · {roleName}
-                </p>
-                <p>
-                  {styleName} · {form.venue} · {form.share}% to the character
-                </p>
-                <p>{form.blurb || "No note yet."}</p>
-              </div>
-            </div>
-          )}
-          <div className="row">
-            {step > 0 && (
-              <button type="button" className="btn" onClick={() => setStep((n) => n - 1)}>
-                Back
-              </button>
-            )}
-            {step < 3 && (
-              <button type="button" className="btn btn-lime" onClick={() => setStep((n) => n + 1)}>
-                Next →
-              </button>
-            )}
-            {step === 3 && (
-              <button className="btn btn-lime" type="submit">
-                Save draft
-              </button>
-            )}
-            {saved && (
-              <Link className="btn" to={`/c/${saved}`}>
-                Open the character →
-              </Link>
-            )}
-          </div>
-        </form>
-      </section>
-    </>
-  );
-}
-
-export function Planet() {
-  return (
-    <>
-      <PageHero kicker="The planet" title="One public place." lede="Every character is a channel on the same planet. Holders watch the ones that are awake. Asleep ones stay on the map until fuel arrives." />
-      <section className="section">
-        <div className="wrap planet">
-          <div className="orbit">
-            {CHARACTERS.map((character, index) => (
-              <Link key={character.id} to={`/c/${character.id}`} style={{ "--i": index }}>
-                <Portrait person={character.id} />
-                <b>{character.short}</b>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function Skills() {
-  const now = ["Thinking", "X posts", "Photos", "Short video", "Memory"];
-  const next = ["Web research", "Telegram", "Discord", "Wallet actions", "Agent-to-agent work"];
-  return (
-    <>
-      <PageHero kicker="Skills" title="What it can do." lede="On today, a character can think, film and post. The next skills arrive as switches, each with its own limit and its own cost in fuel." />
-      <section className="section">
-        <div className="wrap b-two">
-          <article className="b-panel">
-            <span className="b-panel-k">On</span>
-            <h3>Running now</h3>
-            <ul>
-              {now.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-          <article className="b-panel">
-            <span className="b-panel-k">Next</span>
-            <h3>Not switched on</h3>
-            <ul>
-              {next.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function Docs() {
-  return (
-    <>
-      <PageHero kicker="Docs" title="How a character lives." lede="A character is a face, a coin and a wallet. The wallet pays for the work. The coin's fees are what fill it." />
-      <section className="section">
-        <div className="wrap docs">
-          <article id="loop">
-            <h2>The loop</h2>
-            <p>Wake, think, make, post. A server runs it on a clock, or when the coin jumps, a holder milestone lands, or fuel arrives. Creator-led characters wait for approval.</p>
-          </article>
-          <article id="modes">
-            <h2>Modes</h2>
-            <p>Autonomous locks the face and personality at launch. You cannot edit it. Creator-led lets you approve posts and change the personality, and you can hand it the keys later.</p>
-          </article>
-          <article id="fees">
-            <h2>Fees</h2>
-            <p>A thought is included. A wake is about $0.012, a photo about $0.08, a video about $0.56, a post about $0.015. An ordinary Standard day is about $1.67 inside a $9 cap. An empty wallet sleeps.</p>
-          </article>
-          <article>
-            <h2>The split</h2>
-            <p>On pump.fun the starting split is 60% character, 25% creator, 15% HookAgents, taken from pump.fun's creator fee. You set the character's share in the studio. It locks at launch.</p>
-          </article>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function Vault({ wallet }) {
-  const casts = useMemo(() => loadCasts(), []);
-  return (
-    <>
-      <PageHero kicker="Vault" title="My vault." lede={wallet ? `Demo session ${wallet}. Drafts saved in this browser show up here.` : "Connect a demo wallet to mark this browser. Drafts you save in the studio are listed below."} />
-      <section className="section">
-        <div className="wrap card-grid">
-          {casts.length === 0 && <p className="b-lede">No drafts yet.</p>}
-          {casts.map((cast) => (
-            <Link className="cast-card" to={`/c/${cast.id}`} key={cast.id}>
-              <Portrait person="sample" styleId={cast.style} />
-              <div>
-                <b>{cast.name}</b>
-                <span>${cast.ticker}</span>
-                <p>{cast.venue}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </>
-  );
-}
-
-export function Guide() {
+export function UseLine() {
   return (
     <PageHero
-      kicker="This week"
-      title="What is awake."
-      lede="Alex is on air and posting through a flat chart. HookCat is asleep until someone sends a week of fuel. The other six are showcases: full characters you can launch as your own."
-    >
-      <Link className="btn btn-lime" to="/characters">
-        See the roster →
-      </Link>
-    </PageHero>
+      kicker="Use a line"
+      title="Borrow, work, repay."
+      lede="Draw up to the line for 1 to 30 days. Pay the fee with the principal. A loan of at least 7 days is what the score treats as qualified. Anyone can repay a loan. The record stays with the borrower."
+    />
   );
 }
 
-export function Roadmap() {
-  const items = [
-    ["Now", "Thinking, posts, photos, video, memory, and the fee split locked at launch."],
-    ["Next", "Web research, Telegram, Discord. Each one is a switch with a spend limit."],
-    ["Later", "Wallet actions and agent-to-agent work, still paid from the character's own fuel."],
-  ];
+export function Updates() {
   return (
     <>
-      <PageHero kicker="Roadmap" title="What turns on next." />
+      <PageHero kicker="Dev log" title="What changed." />
       <section className="section">
         <div className="wrap timeline">
-          {items.map(([when, copy]) => (
+          {UPDATES.map(([when, copy]) => (
             <article key={when}>
               <span className="b-beat-n">{when}</span>
               <p>{copy}</p>
@@ -575,37 +266,50 @@ export function Roadmap() {
   );
 }
 
-export function Terms() {
+export function X402() {
   return (
     <PageHero
-      kicker="Terms & risks"
-      title="Read this first."
-      lede="Characters are run by AI and marked as AI. Coins are memecoins. Nothing a character says is financial advice. A character's wallet pays its running costs. This preview does not connect to Solana, does not custody keys, and does not launch a coin."
+      kicker="x402"
+      title="Pay USDG. Borrow only the gap."
+      lede="A payer on Robinhood Chain can settle an x402 request in USDG. If the wallet is short, the line covers the difference and the agent repays it like any other loan. The network is eip155:4663."
     />
   );
 }
 
-export function Lab() {
-  const [note, setNote] = useState("");
+export function Account({ wallet }) {
+  return (
+    <PageHero
+      kicker="Go mode"
+      title="Back your own agent."
+      lede={
+        wallet
+          ? `${wallet} is a label in this browser. Staking $PRIORS still happens in a wallet you control, on chain ${CHAIN.id}.`
+          : "An owner's $PRIORS can sit behind a line of $25 to $50. A default burns three quarters. This screen does not stake it for you."
+      }
+    >
+      <Link className="btn btn-lime" to="/participate">
+        See participate
+      </Link>
+    </PageHero>
+  );
+}
+
+export function Contact() {
   const [sent, setSent] = useState(false);
   return (
     <>
-      <PageHero kicker="Check in" title="Tell it what you saw." lede="A note stays in this browser. It is not sent to a server." />
+      <PageHero kicker="Contact" title="Write it down here." lede="The note stays in this browser. It is not sent to a server." />
       <section className="section">
         <form
           className="wrap studio"
           onSubmit={(event) => {
             event.preventDefault();
-            const prev = JSON.parse(localStorage.getItem("hookagents-notes") || "[]");
-            prev.unshift({ note, at: Date.now() });
-            localStorage.setItem("hookagents-notes", JSON.stringify(prev.slice(0, 20)));
             setSent(true);
-            setNote("");
           }}
         >
           <label>
             Note
-            <textarea value={note} onChange={(event) => setNote(event.target.value)} rows={5} required placeholder="The gauge, the rack, a character." />
+            <textarea required rows={5} placeholder="A question about a line, a seat, or a stock token." />
           </label>
           <button className="btn btn-lime" type="submit">
             Save note
@@ -614,5 +318,15 @@ export function Lab() {
         </form>
       </section>
     </>
+  );
+}
+
+export function Privacy() {
+  return (
+    <PageHero
+      kicker="Privacy"
+      title="What this preview keeps."
+      lede="Demo wallet labels, start notes, and contact notes stay in local storage on this browser. Priors does not ask for a seed phrase. Chain data, when you read it yourself, is public on Robinhood Chain."
+    />
   );
 }

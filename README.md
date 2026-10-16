@@ -1,10 +1,12 @@
-# HookAgents
+# Priors
 
-A local recreation of the [HookAgents](https://hookagents.app/) marketing site: characters, the studio, coins, and the launch-rule catalog.
+USDG credit for ERC-8004 agents on Robinhood Chain. This is a local preview of the marketing site.
 
 ```bash
 npm install
 npm run dev
 ```
 
-The studio and the connect button stay in this browser. They do not launch a coin or sign a Solana transaction.
+Open http://127.0.0.1:5173/. Live Server should use the `dist` folder after `npm run build`, then restart Go Live. The source `index.html` is JSX and a static server will refuse it.
+
+Connect and the studio save notes in this browser. They do not send transactions.

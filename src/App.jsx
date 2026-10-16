@@ -3,24 +3,23 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import {
-  CharacterPage,
-  Characters,
-  Create,
-  Docs,
-  Guide,
-  Lab,
-  Launch,
-  Launches,
-  Planet,
-  Roadmap,
-  RulesPage,
-  Skills,
-  Terms,
-  Timeline,
-  Vault,
+  Account,
+  AgentPage,
+  Agents,
+  Borrow,
+  Contact,
+  Invite,
+  Participate,
+  Privacy,
+  Protocol,
+  Start,
+  Stocks,
+  Updates,
+  UseLine,
+  X402,
 } from "./pages/Pages";
 
-const WALLET_KEY = "hookagents-wallet";
+const WALLET_KEY = "priors-wallet";
 
 export default function App() {
   const [wallet, setWallet] = useState("");
@@ -30,7 +29,7 @@ export default function App() {
   }, []);
 
   function connect(provider) {
-    const address = provider === "Phantom" ? "7xK3…pQ9a" : "4mQa…Lk2s";
+    const address = provider === "Rabby" ? "0x20c6…3fD5" : "0x7a13…9be2";
     const label = `${provider} ${address}`;
     localStorage.setItem(WALLET_KEY, label);
     setWallet(label);
@@ -45,21 +44,20 @@ export default function App() {
     <Routes>
       <Route element={<Layout wallet={wallet} onConnect={connect} onDisconnect={disconnect} />}>
         <Route index element={<Home />} />
-        <Route path="timeline" element={<Timeline />} />
-        <Route path="characters" element={<Characters />} />
-        <Route path="c/:id" element={<CharacterPage />} />
-        <Route path="launches" element={<Launches />} />
-        <Route path="launch" element={<Launch />} />
-        <Route path="launch/rules" element={<RulesPage />} />
-        <Route path="create" element={<Create />} />
-        <Route path="planet" element={<Planet />} />
-        <Route path="skills" element={<Skills />} />
-        <Route path="docs" element={<Docs />} />
-        <Route path="vault" element={<Vault wallet={wallet} />} />
-        <Route path="guide" element={<Guide />} />
-        <Route path="roadmap" element={<Roadmap />} />
-        <Route path="terms" element={<Terms />} />
-        <Route path="lab" element={<Lab />} />
+        <Route path="agents" element={<Agents />} />
+        <Route path="agent/:id" element={<AgentPage />} />
+        <Route path="start" element={<Start />} />
+        <Route path="invite" element={<Invite />} />
+        <Route path="participate" element={<Participate wallet={wallet} />} />
+        <Route path="borrow" element={<Borrow />} />
+        <Route path="stocks" element={<Stocks />} />
+        <Route path="protocol" element={<Protocol />} />
+        <Route path="use" element={<UseLine />} />
+        <Route path="updates" element={<Updates />} />
+        <Route path="x402" element={<X402 />} />
+        <Route path="account" element={<Account wallet={wallet} />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="privacy" element={<Privacy />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { NAV } from "../data";
+import { CHAIN, NAV } from "../data";
 import { LogoMark, Wordmark } from "./Art";
 
 export default function Layout({ wallet, onConnect, onDisconnect }) {
@@ -25,7 +25,7 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
     <>
       <header className={`b-hdr${stuck || open ? " stuck" : ""}${open ? " open" : ""}`}>
         <div className="b-hdr-in">
-          <Link className="logo b-logo" to="/" aria-label="HookAgents home">
+          <Link className="logo b-logo" to="/" aria-label="Priors home">
             <LogoMark />
             <Wordmark />
           </Link>
@@ -40,9 +40,9 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
             <button className="btn btn-ghost btn-sm hide-m" onClick={() => (wallet ? onDisconnect() : setModal(true))}>
               {wallet ? wallet : "Connect"}
             </button>
-            <Link className="btn btn-lime btn-sm" to="/launch">
-              <span className="hide-xs">Launch a coin</span>
-              <span className="show-xs">Launch</span>
+            <Link className="btn btn-lime btn-sm" to="/start">
+              <span className="hide-xs">Start</span>
+              <span className="show-xs">Start</span>
             </Link>
             <button className="b-burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
               <i />
@@ -58,6 +58,9 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
                 {item.label}
               </NavLink>
             ))}
+            <Link to="/account" onClick={() => setOpen(false)}>
+              Go mode
+            </Link>
             <button className="btn btn-ghost" onClick={() => (wallet ? onDisconnect() : setModal(true))}>
               {wallet ? wallet : "Connect"}
             </button>
@@ -75,59 +78,48 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
               <Wordmark />
             </span>
             <p>
-              AI characters with their own coin. Characters are run by AI and marked as AI. HookAgents never holds your
-              wallet's keys; each character's own wallet is kept by the server to pay its running costs.
+              USDG credit for ERC-8004 agents on {CHAIN.name}. Priors does not hold your keys. The contracts have no
+              third-party audit. Size what you lend like that.
             </p>
             <span className="socials">
-              <a href="https://x.com/hookagents" target="_blank" rel="noreferrer" aria-label="HookAgents on X">
+              <a href="https://x.com/PriorsAgents" target="_blank" rel="noreferrer" aria-label="Priors on X">
                 𝕏
               </a>
-              <a href="https://t.me/hookagents" target="_blank" rel="noreferrer" aria-label="HookAgents on Telegram">
-                ✈
+              <a href="https://github.com/priors-agents/priors" target="_blank" rel="noreferrer" aria-label="Priors on GitHub">
+                ⌘
               </a>
             </span>
           </div>
-          <nav aria-label="Characters">
-            <b>Characters</b>
-            <Link to="/characters">All characters</Link>
-            <Link to="/create">The studio</Link>
-            <Link to="/create?mode=autonomous">Autonomous</Link>
-            <Link to="/create?mode=creator">Creator-led</Link>
+          <nav aria-label="Agents">
+            <b>Agents</b>
+            <Link to="/agents">All agents</Link>
+            <Link to="/start">Create an agent</Link>
+            <Link to="/invite">First line</Link>
+            <Link to="/use">Use a line</Link>
           </nav>
-          <nav aria-label="Coins">
-            <b>Coins</b>
-            <Link to="/launches">All coins</Link>
-            <Link to="/launch">Launch a coin</Link>
-            <Link to="/#rules">Rules</Link>
-            <Link to="/vault">My vault</Link>
+          <nav aria-label="Money">
+            <b>Money</b>
+            <Link to="/participate">Participate</Link>
+            <Link to="/account">Go mode</Link>
+            <Link to="/borrow">Borrow on stocks</Link>
+            <Link to="/x402">Pay with x402</Link>
           </nav>
           <nav aria-label="Reading">
             <b>Reading</b>
-            <Link to="/docs">Docs</Link>
-            <Link to="/timeline">Timeline</Link>
-            <Link to="/guide">This week</Link>
-            <Link to="/skills">Skills</Link>
-            <Link to="/docs#fees">Fees</Link>
-            <Link to="/roadmap">Roadmap</Link>
-            <Link to="/terms">Terms & risks</Link>
-            <Link to="/planet">The planet</Link>
-            <Link to="/lab">Check in</Link>
+            <Link to="/protocol">Protocol</Link>
+            <Link to="/updates">Dev log</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/privacy">Privacy</Link>
+            <a href="https://github.com/priors-agents/priors" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
           </nav>
         </div>
         <div className="wrap b-ftr-bar">
           <span>
-            <i className="b-rec" /> Solana mainnet
+            <i className="b-rec" /> {CHAIN.name} · {CHAIN.id}
           </span>
-          <span>
-            <a href="https://x.com/hookagents" target="_blank" rel="noreferrer">
-              X
-            </a>
-            {" · "}
-            <a href="https://t.me/hookagents" target="_blank" rel="noreferrer">
-              Telegram
-            </a>
-            {" · HookAgents"}
-          </span>
+          <span>priors.trade · open protocol</span>
         </div>
       </footer>
       {modal && (
@@ -135,9 +127,12 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
           <div className="modal" onClick={(event) => event.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="connect-title">
             <span className="eyebrow">Wallet</span>
             <h2 id="connect-title">Connect</h2>
-            <p>This preview keeps a demo address in the browser. It does not open a wallet, ask for a seed phrase, or sign a transaction.</p>
+            <p>
+              This preview stores a label in the browser. It does not open a wallet, ask for a seed phrase, or send a
+              transaction on {CHAIN.name}.
+            </p>
             <div className="wallet-list">
-              {["Phantom", "Solflare"].map((name) => (
+              {["Rabby", "MetaMask"].map((name) => (
                 <button
                   key={name}
                   className="btn"

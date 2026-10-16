@@ -497,6 +497,7 @@ h3 { font-size: clamp(26px, 3vw, 40px); margin: 0; text-transform: uppercase; }
   color: var(--paper-2);
 }
 .b-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .b-panel {
   display: grid;
   gap: 14px;
@@ -749,7 +750,7 @@ input, select, textarea {
   .b-ftr-grid, .grid-2, .b-fuel-grid, .char-grid, .review { grid-template-columns: 1fr; }
 }
 @media (max-width: 800px) {
-  .c-hero-grid, .b-modes, .b-two, .b-track, .studio-grid, .b-tiers { grid-template-columns: 1fr; }
+  .c-hero-grid, .b-modes, .b-two, .ways, .b-track, .studio-grid, .b-tiers { grid-template-columns: 1fr; }
   .b-beat + .b-beat { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.09); }
   .hide-m { display: none; }
   .c-hang { margin-top: 0; }
