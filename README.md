@@ -1,4 +1,4 @@
-# Priors
+# HookAgents
 
 USDG credit for ERC-8004 agents on Robinhood Chain. This is a local preview of the marketing site.
 

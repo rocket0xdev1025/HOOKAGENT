@@ -25,7 +25,7 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
     <>
       <header className={`b-hdr${stuck || open ? " stuck" : ""}${open ? " open" : ""}`}>
         <div className="b-hdr-in">
-          <Link className="logo b-logo" to="/" aria-label="Priors home">
+          <Link className="logo b-logo" to="/" aria-label="HookAgents home">
             <LogoMark />
             <Wordmark />
           </Link>
@@ -78,11 +78,11 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
               <Wordmark />
             </span>
             <p>
-              USDG credit for ERC-8004 agents on {CHAIN.name}. Priors does not hold your keys. The contracts have no
+              USDG credit for ERC-8004 agents on {CHAIN.name}. HookAgents does not hold your keys. The contracts have no
               third-party audit. Size what you lend like that.
             </p>
             <span className="socials">
-              <a href="https://x.com/HookAIAgent" target="_blank" rel="noreferrer" aria-label="Priors on X">
+              <a href="https://x.com/HookAIAgent" target="_blank" rel="noreferrer" aria-label="HookAgents on X">
                 𝕏
               </a>
             </span>
@@ -107,7 +107,7 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
             <Link to="/updates">Dev log</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/privacy">Privacy</Link>
-            <a href="https://github.com/priors-agents/priors" target="_blank" rel="noreferrer">
+            <a href="https://github.com/HookAgents-agents/HookAgents" target="_blank" rel="noreferrer">
               GitHub
             </a>
           </nav>
@@ -116,7 +116,7 @@ export default function Layout({ wallet, onConnect, onDisconnect }) {
           <span>
             <i className="b-rec" /> {CHAIN.name} · {CHAIN.id}
           </span>
-          <span>priors.trade · open protocol</span>
+          <span>HookAgents.trade · open protocol</span>
         </div>
       </footer>
       {modal && (

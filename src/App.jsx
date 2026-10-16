@@ -19,7 +19,7 @@ import {
   X402,
 } from "./pages/Pages";
 
-const WALLET_KEY = "priors-wallet";
+const WALLET_KEY = "HookAgents-wallet";
 
 export default function App() {
   const [wallet, setWallet] = useState("");

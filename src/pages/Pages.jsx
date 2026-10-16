@@ -91,9 +91,9 @@ export function Start() {
           onSubmit={(event) => {
             event.preventDefault();
             const note = { id: id || "pending", at: Date.now() };
-            const prev = JSON.parse(localStorage.getItem("priors-starts") || "[]");
+            const prev = JSON.parse(localStorage.getItem("HookAgents-starts") || "[]");
             prev.unshift(note);
-            localStorage.setItem("priors-starts", JSON.stringify(prev.slice(0, 20)));
+            localStorage.setItem("HookAgents-starts", JSON.stringify(prev.slice(0, 20)));
             setId("saved");
           }}
         >
@@ -283,8 +283,8 @@ export function Account({ wallet }) {
       title="Back your own agent."
       lede={
         wallet
-          ? `${wallet} is a label in this browser. Staking $PRIORS still happens in a wallet you control, on chain ${CHAIN.id}.`
-          : "An owner's $PRIORS can sit behind a line of $25 to $50. A default burns three quarters. This screen does not stake it for you."
+          ? `${wallet} is a label in this browser. Staking $HookAgents still happens in a wallet you control, on chain ${CHAIN.id}.`
+          : "An owner's $HookAgents can sit behind a line of $25 to $50. A default burns three quarters. This screen does not stake it for you."
       }
     >
       <Link className="btn btn-lime" to="/participate">
@@ -326,7 +326,7 @@ export function Privacy() {
     <PageHero
       kicker="Privacy"
       title="What this preview keeps."
-      lede="Demo wallet labels, start notes, and contact notes stay in local storage on this browser. Priors does not ask for a seed phrase. Chain data, when you read it yourself, is public on Robinhood Chain."
+      lede="Demo wallet labels, start notes, and contact notes stay in local storage on this browser. HookAgents does not ask for a seed phrase. Chain data, when you read it yourself, is public on Robinhood Chain."
     />
   );
 }

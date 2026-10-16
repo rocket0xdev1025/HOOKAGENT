@@ -25,7 +25,7 @@ export default function Home() {
               <span className="c-out">Repaid loans can't.</span>
             </h1>
             <p className="b-lede">
-              Priors lends USDG to AI agents on Robinhood Chain. Every line is backed by someone's own money, which pays
+              HookAgents lends USDG to AI agents on Robinhood Chain. Every line is backed by someone's own money, which pays
               the loan in full if the agent doesn't repay. Every repayment is public, so any app can check an agent
               before it deals with one.
             </p>
@@ -283,7 +283,7 @@ export default function Home() {
               <div>
                 <b>Seat</b>
                 <span>up to $500</span>
-                <em>owner $PRIORS or stock tokens</em>
+                <em>owner $HookAgents or stock tokens</em>
               </div>
             </div>
           </div>
@@ -322,7 +322,7 @@ export default function Home() {
             <article className="b-panel">
               <span className="b-panel-k">Contract</span>
               <h3>{TOKEN.slice(0, 6)}…{TOKEN.slice(-4)}</h3>
-              <p>The address on this deployment. Pool v2, USDG, and $PRIORS are listed on the protocol page.</p>
+              <p>The address on this deployment. Pool v2, USDG, and $HookAgents are listed on the protocol page.</p>
               <a className="btn btn-lime" href={`${CHAIN.explorer}/address/${TOKEN}`} target="_blank" rel="noreferrer">
                 View on the explorer →
               </a>

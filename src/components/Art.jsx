@@ -120,7 +120,7 @@ export function LogoMark() {
 
 export function Wordmark() {
   return (
-    <span className="word" aria-label="Priors">
+    <span className="word" aria-label="HookAgents">
       Pri<i>ors</i>
     </span>
   );

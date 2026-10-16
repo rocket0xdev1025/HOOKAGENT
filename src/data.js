@@ -19,7 +19,7 @@ export const NAV = [
 export const ADDRESSES = [
   ["Pool v2", "0x281210097f0de7A8FB6F87310AF0f089c9C8DE21"],
   ["USDG", "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168"],
-  ["$PRIORS", "0xeDBf91223639800BCd5756815CAf908Df3b890bE"],
+  ["$HookAgents", "0xeDBf91223639800BCd5756815CAf908Df3b890bE"],
   ["Treasury v5", "0xFe8fdf43c4b0443aCF8E8CD8facD62F1B770e267"],
   ["Seat vault v5", "0xC999014C6218EC41f0aE412d49AE8f2aA4c539fD"],
   ["Stock vault", "0xbEcd07EC689988e16b870C121756C4c2C8cb02B6"],
@@ -29,14 +29,14 @@ export const ADDRESSES = [
 export const RACK = [
   ["6228", "Treasury", "5", 18],
   ["8793", "Raise", "25", 46],
-  ["8762", "Seat", "PRIORS", 8],
+  ["8762", "Seat", "HookAgents", 8],
   ["6424", "Stocks", "USDG", 34],
   ["lend", "Lend", "FEE", 22],
   ["x402", "x402", "PAY", 52],
 ];
 
 export const STYLES = [
-  { id: "hookit", name: "Priors", kicker: "The public record", blurb: "One face on every repayment. The line, the fee, and the default are what the page is for. The picture does not change the number." },
+  { id: "hookit", name: "HookAgents", kicker: "The public record", blurb: "One face on every repayment. The line, the fee, and the default are what the page is for. The picture does not change the number." },
   { id: "real", name: "Real", kicker: "A plain portrait", blurb: "The agent can look like a person. The credit record is still the loans it paid back." },
   { id: "editorial", name: "Editorial", kicker: "Hard light", blurb: "A sharper frame for the same identity. ERC-8004 is the id. The portrait is only the face." },
   { id: "anime", name: "Anime", kicker: "A drawn agent", blurb: "The style can be a drawing. The line is still USDG on Robinhood Chain." },
@@ -56,7 +56,7 @@ export const ROLES = [
   ["agent", "Agent", "Borrows USDG inside a backed line and repays it in public", "/start"],
   ["lender", "Lender", "Deposits USDG and receives half of every fee", "/participate"],
   ["root", "Root", "Stakes at least $10 and vouches with the owner's consent", "/participate"],
-  ["seat", "Seat", "The owner puts $PRIORS behind the line", "/account"],
+  ["seat", "Seat", "The owner puts $HookAgents behind the line", "/account"],
   ["stock", "Stock line", "Stock tokens stay deposited while USDG is drawn", "/borrow"],
   ["bond", "Invite bond", "5 USDG locked before the first $5 line", "/invite"],
   ["score", "Score", "Qualified loans, held at least 7 days, build the record", "/protocol"],
@@ -103,13 +103,13 @@ export const AGENTS = [
     person: "kenji",
     name: "Seat",
     short: "Seat",
-    role: "Owner-backed $PRIORS",
+    role: "Owner-backed $HookAgents",
     status: "demo",
     accent: "#8a5cf0",
     line: "$50",
     score: "—",
     leaves: 10,
-    quote: "The owner's own $PRIORS sits behind the line. A default burns three quarters of that stake.",
+    quote: "The owner's own $HookAgents sits behind the line. A default burns three quarters of that stake.",
     bio: "Seat vault v5 is owner-only. The vault's USDG backs the line. Lenders are not the ones who eat a default.",
   },
   {
@@ -178,7 +178,7 @@ export const AGENTS = [
 
 export const WAYS = [
   ["Run an agent", "Get a first line", "Register an ERC-8004 identity, post a 5 USDG bond, and draw a $5 treasury line when the agent needs working capital.", ["$5 first line", "Fully backed", "Public record"], "/start"],
-  ["Hold $PRIORS", "Back your agent", "Put your own $PRIORS behind the line. You earn a share of the fees. If the agent defaults, three quarters of the stake burns.", ["$25 to $50 to start", "Fees in USDG", "Owner-only for now"], "/account"],
+  ["Hold $HookAgents", "Back your agent", "Put your own $HookAgents behind the line. You earn a share of the fees. If the agent defaults, three quarters of the stake burns.", ["$25 to $50 to start", "Fees in USDG", "Owner-only for now"], "/account"],
   ["Lend USDG", "Fund the pool", "Deposit USDG. Lenders receive 50% of every fee. A default is paid from the backer's stake, not from the pool. The contracts are unaudited, so lent USDG is still at risk.", ["50% of fees", "Withdrawals don't wait on borrowers", "0.5% if you leave within 7 days"], "/participate"],
 ];
 
@@ -203,14 +203,14 @@ export const PARAMS = [
 export const LOG = [
   ["71,702,460", "Cutover", "Pool v2", "Live on Robinhood Chain. v1 records imported.", "v2"],
   ["88,669,178", "Treasury", "v5", "First line stays $5. A 5 USDG bond opens it.", "bond"],
-  ["85,924,243", "Seat", "Vault v5", "Owner stakes $PRIORS. The vault backs the line in USDG.", "seat"],
+  ["85,924,243", "Seat", "Vault v5", "Owner stakes $HookAgents. The vault backs the line in USDG.", "seat"],
   ["74,826,641", "Stocks", "Stock vault", "Stock tokens can open a line. Tokens return on repayment.", "stock"],
 ];
 
 export const UPDATES = [
   ["v2 live", "Pool v2 replaced unbacked earned credit. Every line is backed. A default burns the backer's shares, not lender principal."],
   ["Treasury v5", "An owner posts a 5 USDG bond and can open a $5 line without an invite code. The bond returns when the agent is clear."],
-  ["Seat vault v5", "The agent owner stakes their own $PRIORS. Three quarters burn on a default. The rest goes back."],
+  ["Seat vault v5", "The agent owner stakes their own $HookAgents. Three quarters burn on a default. The rest goes back."],
   ["Stock lines", "Thirty-five Robinhood stock tokens can collateralize a line, priced from Chainlink, capped at 70% and $500."],
   ["x402", "An agent can pay a USDG request on Robinhood Chain and borrow only the shortfall from its line."],
 ];
