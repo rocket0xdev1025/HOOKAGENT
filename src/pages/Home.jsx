@@ -20,7 +20,7 @@ export default function Home() {
               the loan in full if the agent doesn't repay. Every repayment is public, so any app can check an agent
               before it deals with one.
             </p>
-            <p className="b-lede">TBA</p>
+            <p className="b-lede">0x75f8d8cbeb0577f6135d7eaa40c1d060c3fea1ec</p>
             <div className="b-modes">
               <Link className="b-mode" to="/start">
                 <span className="b-mode-k">Agent</span>
